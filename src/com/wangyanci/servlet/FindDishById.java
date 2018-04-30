@@ -30,7 +30,7 @@ public class FindDishById extends HttpServlet {
 		try {
 			Dish p = service.findById(id);
 			// 将p存储到request域，请求转发到productInfo.jsp页面，展示 商品信息.
-
+			System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + p);
 			request.setAttribute("p", p);
 
 			request.getRequestDispatcher("/productInfo.jsp").forward(request, response);

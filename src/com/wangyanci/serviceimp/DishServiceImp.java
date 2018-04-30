@@ -19,7 +19,7 @@ public class DishServiceImp implements DishService {
 	public Dish findById(String id) throws SQLException {
 		DishDao dishdao = new DishDaoImp();
 		Dish dish = dishdao.findById(id);
-		return null;
+		return dish;
 	}
 
 	public void addProduct(Dish p) throws SQLException {

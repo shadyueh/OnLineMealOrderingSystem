@@ -47,8 +47,8 @@
 	};
 	
 	//根据id查询商品
-	function findProductById(id){
-		location.href="http://localhost:8080/findDishById?id="+id;
+	function findDishById(id){
+		location.href="${pageContext.request.contextPath}/findDishById?id="+id;
 	};
 </script>
 </head>
@@ -182,9 +182,9 @@
 														<div class="overview-table-inner">
 															<h4>${p.name }</h4>
 															<img src="${pageContext.request.contextPath}${p.imgurl}" width="55px" height="55px"
-																alt="an image" class="image" onclick="findProductById('${p.id}')"/>
+																alt="an image" class="image" onclick="findDishById('${p.id}')"/>
 															<p>价格: ￥${p.price }</p>
-															<p><a href="${pageContext.request.contextPath}/findProductById?id=${p.id}">速速抢购</a></p>
+															<p><a href="${pageContext.request.contextPath}/findDishById?id=${p.id}">速速抢购</a></p>
 														</div>
 													</div>										
 													<c:if test="${vs.count%5==0}">
