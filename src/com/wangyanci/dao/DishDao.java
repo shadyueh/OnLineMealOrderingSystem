@@ -11,4 +11,6 @@ public interface DishDao {
 
 	public Dish findById(String id) throws SQLException;
 
+	public void addDish(Dish p) throws SQLException;
+
 }

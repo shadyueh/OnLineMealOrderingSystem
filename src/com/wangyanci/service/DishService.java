@@ -11,4 +11,6 @@ public interface DishService {
 
 	public Dish findById(String id) throws SQLException;
 
+	public void addProduct(Dish p) throws SQLException;
+
 }

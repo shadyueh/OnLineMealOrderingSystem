@@ -22,4 +22,10 @@ public class DishServiceImp implements DishService {
 		return null;
 	}
 
+	public void addProduct(Dish p) throws SQLException {
+		DishDao dishdao = new DishDaoImp();
+		dishdao.addDish(p);
+
+	}
+
 }

@@ -71,4 +71,14 @@
     <servlet-name>FindDishById</servlet-name>
     <url-pattern>/findDishById</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddDish</display-name>
+    <servlet-name>AddDish</servlet-name>
+    <servlet-class>com.wangyanci.servlet.AddDish</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddDish</servlet-name>
+    <url-pattern>/addDish</url-pattern>
+  </servlet-mapping>
 </web-app>
