@@ -1,4 +1,4 @@
-package com.wangyanci.service;
+package com.wangyanci.serviceimp;
 
 import java.sql.SQLException;
 
@@ -11,6 +11,7 @@ import com.wangyanci.exception.ActiveCodeException;
 import com.wangyanci.exception.LoginException;
 import com.wangyanci.exception.RegistException;
 import com.wangyanci.pojo.User;
+import com.wangyanci.service.UserService;
 import com.wangyanci.utils.MailUtils;
 
 public class UserServiceImp implements UserService {
@@ -18,12 +19,11 @@ public class UserServiceImp implements UserService {
 	public void regist(User user) throws RegistException {
 		UserDao userdao = new UserDaoImp();
 
-		UserDao dao = new UserDaoImp();
 		try {
 			userdao.regist(user);
 			// 向注册成功的用户发送一封激活邮件。
 
-			String emailMsg = "注册成功，请<a href='http://localhost:8081/OnLineOrderingSystem/active?activeCode="
+			String emailMsg = "注册成功，请<a href='http://localhost:8080/OnLineOrderingSystem/active?activeCode="
 					+ user.getActivecode() + "'>激活</a>,激活码为:" + user.getActivecode();
 			MailUtils.sendMail(user.getEmail(), emailMsg);
 
@@ -43,16 +43,13 @@ public class UserServiceImp implements UserService {
 		// 1.根据激活码查询用户，要判断激活码是否过期.
 
 		User user = dao.findUserByActiveCode(activeCode);
-
 		if (user != null) {
 			// 2.进行激活操作
-
 			long time = System.currentTimeMillis() - user.getRegisttime().getTime();
 
 			if (time <= 24 * 60 * 1000 * 60) {
 				// 激活
 				dao.activeUser(activeCode);
-
 			} else {
 				throw new ActiveCodeException("激活码过期");
 			}

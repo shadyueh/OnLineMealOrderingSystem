@@ -9,7 +9,7 @@
     Base template (without user's data) checked by http://validator.w3.org : "This page is valid XHTML 1.0 Transitional"
     -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Estore购物商城</title>
+<title>快捷订餐</title>
 
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 <!--[if IE 6]><link rel="stylesheet" href="style.ie6.css" type="text/css" media="screen" /><![endif]-->
@@ -48,7 +48,7 @@
 	
 	//根据id查询商品
 	function findProductById(id){
-		location.href="http://www.estore.com/findProductById?id="+id;
+		location.href="http://localhost:8080/findDishById?id="+id;
 	};
 </script>
 </head>
@@ -72,7 +72,7 @@
 						<h1 id="name-text" class="art-logo-name">
 							<a href="#">Estore购物商城</a>
 						</h1>
-						<div id="slogan-text" class="art-logo-text">快乐的购物天堂...</div>
+						<div id="slogan-text" class="art-logo-text">享受生活，愉悦订餐...</div>
 					</div>
 				</div>
 				<div class="art-nav">
@@ -302,8 +302,6 @@
 																	class="art-button" type="submit" name="loginbtn"
 																	value="登陆" /> </span> &nbsp;&nbsp;&nbsp;<a
 																href="${pageContext.request.contextPath}/regist.jsp">注册</a>
-																<td>${pageContext.request.contextPath}</td>
-																
 													</table>
 												</form>
 											</div>

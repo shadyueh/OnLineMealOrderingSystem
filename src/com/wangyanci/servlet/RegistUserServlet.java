@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 import com.wangyanci.pojo.User;
 import com.wangyanci.service.UserService;
-import com.wangyanci.service.UserServiceImp;
+import com.wangyanci.serviceimp.UserServiceImp;
 import com.wangyanci.utils.ActiveCodeUtils;
 
 /**

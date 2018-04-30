@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>OnLineOrderingSystem111</display-name>
   <servlet>
     <servlet-name>CheckImgServlet</servlet-name>
@@ -42,5 +40,35 @@
   <servlet-mapping>
     <servlet-name>ActiveUserServlet</servlet-name>
     <url-pattern>/active</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FindAllProduct</display-name>
+    <servlet-name>FindAllProduct</servlet-name>
+    <servlet-class>com.wangyanci.servlet.FindAllProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindAllProduct</servlet-name>
+    <url-pattern>/findAllProduct</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FindAllDish</display-name>
+    <servlet-name>FindAllDish</servlet-name>
+    <servlet-class>com.wangyanci.servlet.FindAllDish</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindAllDish</servlet-name>
+    <url-pattern>/findAllDish</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FindDishById</display-name>
+    <servlet-name>FindDishById</servlet-name>
+    <servlet-class>com.wangyanci.servlet.FindDishById</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindDishById</servlet-name>
+    <url-pattern>/findDishById</url-pattern>
   </servlet-mapping>
 </web-app>

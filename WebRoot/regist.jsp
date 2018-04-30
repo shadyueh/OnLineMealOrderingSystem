@@ -97,15 +97,7 @@
 				<td>验证码</td>
 				<td><input type="text" name="checkcode" id="checkcode"><img
 					src="${pageContext.request.contextPath}/checkImg"
-					<td>${pageContext.request.contextPath}</td>
 					onclick="change();" id="cimg"><span id="checkcode_message"></span>
-					
-				</td>
-					<td>
-				<% String str=(String)request.getSession().getAttribute("huixian"); %>
-				<% out.print(str);
-				%>
-				
 				</td>
 			</tr>
 			<tr>

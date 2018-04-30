@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 
 import com.wangyanci.exception.ActiveCodeException;
 import com.wangyanci.service.UserService;
-import com.wangyanci.service.UserServiceImp;
+import com.wangyanci.serviceimp.UserServiceImp;
 
 public class ActiveUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +36,7 @@ public class ActiveUserServlet extends HttpServlet {
 		try {
 			service.activeUser(activeCode);
 			response.setContentType("text/html;charset=utf-8");
-			response.getWriter().write("激活成功，请回<a href='http://localhost:8081/OnLineOrderingSystem/home.jsp'>首页</a>");
+			response.getWriter().write("激活成功，请回<a href='http://localhost:8080/OnLineOrderingSystem/home.jsp'>首页</a>");
 			return;
 
 		} catch (SQLException e) {

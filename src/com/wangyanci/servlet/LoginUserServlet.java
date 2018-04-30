@@ -13,7 +13,7 @@ import com.wangyanci.exception.ActiveCodeException;
 import com.wangyanci.exception.LoginException;
 import com.wangyanci.pojo.User;
 import com.wangyanci.service.UserService;
-import com.wangyanci.service.UserServiceImp;
+import com.wangyanci.serviceimp.UserServiceImp;
 
 public class LoginUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
