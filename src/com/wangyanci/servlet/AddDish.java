@@ -38,8 +38,11 @@ public class AddDish extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Map<String, String[]> map = new HashMap<String, String[]>();// 用于封装所有请求参数
-		// 1.设置临时文件存储位置以及缓存大小
+
+		System.out.println("进来了************************");
+
+		Map<String, String[]> map = new HashMap<String, String[]>();//
+		// 用于封装所有请求参数
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(1024 * 100);
 		factory.setRepository(new File(this.getServletContext().getRealPath("/temp")));
@@ -48,7 +51,7 @@ public class AddDish extends HttpServlet {
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		upload.setHeaderEncoding("utf-8"); // 解决上传文件中文乱码.
 		boolean flag = upload.isMultipartContent(request);
-
+		System.out.println(flag);
 		if (flag) {
 
 			// upload.setSizeMax(1024*1024*10);//设置上传文件总大小
@@ -68,7 +71,7 @@ public class AddDish extends HttpServlet {
 
 						// 得到真实名称
 						filename = UploadUtils.subFileName(filename);
-
+						System.out.println("*****************" + filename);
 						// 得到随机名称
 						String uuidname = UploadUtils.generateRandonFileName(filename);
 
@@ -88,7 +91,8 @@ public class AddDish extends HttpServlet {
 						item.delete();// 删除临时文件.
 
 						// 生成缩略图
-						PicUtils putils = new PicUtils(dest.getCanonicalPath());// 获取上传文件的绝对磁盘路径。
+						PicUtils putils = new PicUtils(dest.getCanonicalPath());//
+						// 获取上传文件的绝对磁盘路径。
 
 						putils.resize(200, 200);// 就会产生一个200*200的缩略图.
 						// 封装imgurl
@@ -96,7 +100,7 @@ public class AddDish extends HttpServlet {
 
 					}
 				}
-
+				System.out.println("*****************" + map);
 				map.put("id", new String[] { UUID.randomUUID().toString() });// 封装id
 
 				// 使用BeanUtils将所有数据封装到Product
@@ -106,11 +110,14 @@ public class AddDish extends HttpServlet {
 
 				// 调用service完成添加操作
 				DishService service = new DishServiceImp();
-
+				System.out.println("*****************" + p);
 				service.addProduct(p);
 
 				// 得定向到首页
-				response.sendRedirect("http://localhost:8080/OnLineOrderingSystem/");
+				response.getWriter().write("add success");
+				;
+				//
+				// response.sendRedirect("http://localhost:8080/OnLineOrderingSystem/");
 				return;
 
 			} catch (FileUploadException e) {

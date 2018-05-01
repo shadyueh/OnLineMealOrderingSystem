@@ -232,9 +232,9 @@
 												<li><a href="page.html?i1"><span class="l"></span><span
 														class="r"></span><span class="t">主页</span> </a></li>
 												<li><a href="${pageContext.request.contextPath}/addProduct.jsp"><span class="l"></span><span
-														class="r"></span><span class="t">添加商品</span> </a></li>
-												<li><a href="page.html?i4"><span class="l"></span><span
-														class="r"></span><span class="t">查看商品</span> </a></li>
+														class="r"></span><span class="t">添加菜品</span> </a></li>
+												<li><a href="${pageContext.request.contextPath}/backmanger.jsp"><span class="l"></span><span
+														class="r"></span><span class="t">管理菜品</span> </a></li>
 												<li><a href="http://www.estore.com/showCart.jsp"><span class="l"></span><span
 														class="r"></span><span class="t">查看购物车</span> </a></li>
 												<li><a href="${pageContext.request.contextPath}/showOrder"><span class="l"></span><span
