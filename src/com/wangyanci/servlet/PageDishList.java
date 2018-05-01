@@ -2,42 +2,53 @@ package com.wangyanci.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.wangyanci.pojo.Dish;
+import com.wangyanci.pojo.PageDish;
 import com.wangyanci.service.DishService;
 import com.wangyanci.serviceimp.DishServiceImp;
 
-public class FindAllDish extends HttpServlet {
+public class PageDishList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public FindAllDish() {
+	public PageDishList() {
 		super();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 1.查询所有菜肴
+		int page = 1;
+		String _page = request.getParameter("page");
+		if (_page != null) {
+			page = Integer.parseInt(_page);
+		}
+		int rows = 5;
+
+		String _rows = request.getParameter("rows");
+		if (_rows != null) {
+			rows = Integer.parseInt(_rows);
+		}
+
 		DishService service = new DishServiceImp();
 		try {
+			PageDish pd = service.findPageList(page, rows);
+			// 将p存储到request域，请求转发到productInfo.jsp页面，展示 商品信息.
+			System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + pd);
+			request.setAttribute("pd", pd);
 
-			List<Dish> ps = service.findAll();
-			// 2.将所有菜肴信息存储到request域。
-
-			request.setAttribute("ps", ps);
-			System.out.println(
-					"%%%^^%%^%^%^&&#$%^&&^#$%^&&^%%$$$$$$$$$#$%^&*&^%$%^&&&%$%%%^^" + request.getHeader("refer"));
-			request.getRequestDispatcher("/home.jsp").forward(request, response);
+			request.getRequestDispatcher("/editProduct.jsp").forward(request, response);
+			// response.getWriter().write(ps.toString());
 			return;
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	@Override

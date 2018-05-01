@@ -81,4 +81,14 @@
     <servlet-name>AddDish</servlet-name>
     <url-pattern>/addDish</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PageDishList</display-name>
+    <servlet-name>PageDishList</servlet-name>
+    <servlet-class>com.wangyanci.servlet.PageDishList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PageDishList</servlet-name>
+    <url-pattern>/pageDishList</url-pattern>
+  </servlet-mapping>
 </web-app>

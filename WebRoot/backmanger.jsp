@@ -25,7 +25,7 @@
          		<span>菜饮品管理</span>
          		<ul>
 	         		<li data-options="attributes:{'url':'${pageContext.request.contextPath}/addProduct.jsp'}">新增菜饮品</li>
-	         		<li data-options="attributes:{'url':'item-list'}">修改菜饮品</li>
+	         		<li data-options="attributes:{'url':'${pageContext.request.contextPath}/pageDishList?page=1&rows=15'}">修改菜饮品</li>
 	         		<li data-options="attributes:{'url':'item-param-list'}">删除菜饮品</li>
 	         	</ul>
          	</li>

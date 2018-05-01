@@ -13,4 +13,8 @@ public interface DishDao {
 
 	public void addDish(Dish p) throws SQLException;
 
+	public List<Dish> findPageList(int page, int rows) throws SQLException;
+
+	public int findAllCount() throws SQLException;
+
 }

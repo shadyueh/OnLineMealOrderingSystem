@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.wangyanci.dao.DishDao;
 import com.wangyanci.pojo.Dish;
@@ -34,6 +35,19 @@ public class DishDaoImp implements DishDao {
 
 		runner.update(sql, p.getId(), p.getName(), p.getPrice(), p.getPnum(), p.getCategory(), p.getImgurl(),
 				p.getDescription());
+	}
+
+	public List<Dish> findPageList(int page, int rows) throws SQLException {
+		String sql = "select * from dish limit ?,?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		return runner.query(sql, new BeanListHandler<Dish>(Dish.class), (page - 1) * rows, rows);
+	}
+
+	public int findAllCount() throws SQLException {
+		String sql = "select count(*) from dish";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		long count = (Long) runner.query(sql, new ScalarHandler());
+		return (int) count;
 	}
 
 }
