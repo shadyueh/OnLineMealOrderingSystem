@@ -1,8 +1,6 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<head>
+
 
 <title>添加商品</title>
 
@@ -34,9 +32,9 @@ window.close();
 }
 </script>
 
-</head>
 
-<body>
+
+<div>
 	<form id="form" onsubmit="return false" action="##" method="post">
 		<table border="1" align="center">
 			<tr>
@@ -77,5 +75,4 @@ window.close();
 			</tr>
 		</table>
 	</form>
-</body>
-</html>
+</div>
