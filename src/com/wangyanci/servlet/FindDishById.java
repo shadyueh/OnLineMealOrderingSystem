@@ -24,7 +24,7 @@ public class FindDishById extends HttpServlet {
 			throws ServletException, IOException {
 		// 1.得到商品id
 		String id = request.getParameter("id");
-
+		String dist = request.getParameter("dist");
 		// 2.调用service,dao完成查询商品操作
 		DishService service = new DishServiceImp();
 		try {
@@ -32,8 +32,11 @@ public class FindDishById extends HttpServlet {
 			// 将p存储到request域，请求转发到productInfo.jsp页面，展示 商品信息.
 			System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + p);
 			request.setAttribute("p", p);
-
-			request.getRequestDispatcher("/productInfo.jsp").forward(request, response);
+			if (dist.equals("list")) {
+				request.getRequestDispatcher("/dishInfo.jsp").forward(request, response);
+			} else if (dist.equals("edit")) {
+				request.getRequestDispatcher("/editDish.jsp").forward(request, response);
+			}
 			return;
 
 		} catch (SQLException e) {

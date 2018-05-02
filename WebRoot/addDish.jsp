@@ -1,17 +1,42 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-
 <title>添加商品</title>
 
-<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
-<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>  
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" /> 
+
 </head>
+<script type="text/javascript">
+function add(){
+alert("开始发请求");
+var formData=new FormData($("#form")[0]);
+$.ajax({
+type:"POST",
+async:false,
+contentType:false,
+processData:false,
+cache:false,
+dataType:'text',
+url:'${pageContext.request.contextPath}/addDish',
+data:formData,
+success:function(result){
+$('#form')[0].reset();
+alert("添加成功!");
+
+},
+error:function(){
+alert("异常，请检查！");
+window.close();
+}
+});
+}
+</script>
 
 <body>
-	<form action="${pageContext.request.contextPath}/addDish"
-		method="post" encType="multipart/form-data">
+
+<div>
+	<form id="form" onsubmit="return false" action="##" method="post">
 		<table border="1" align="center">
 			<tr>
 				<td>菜肴饮品名称</td>
@@ -44,12 +69,14 @@
 			</tr>
 
 			<tr>
-				<td colspan="2"><input type="submit" value="添加">&nbsp;&nbsp;
+				<td colspan="2"><input type="button" value="添加" onclick="add();">&nbsp;&nbsp;
 					<input type="reset" value="取消">
 				</td>
 
 			</tr>
 		</table>
 	</form>
+</div>
+
 </body>
 </html>

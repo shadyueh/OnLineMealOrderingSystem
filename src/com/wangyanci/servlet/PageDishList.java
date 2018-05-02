@@ -27,7 +27,7 @@ public class PageDishList extends HttpServlet {
 		if (_page != null) {
 			page = Integer.parseInt(_page);
 		}
-		int rows = 5;
+		int rows = 10;
 
 		String _rows = request.getParameter("rows");
 		if (_rows != null) {
@@ -41,7 +41,7 @@ public class PageDishList extends HttpServlet {
 			System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" + pd);
 			request.setAttribute("pd", pd);
 
-			request.getRequestDispatcher("/editProduct.jsp").forward(request, response);
+			request.getRequestDispatcher("/pageListDish.jsp").forward(request, response);
 			// response.getWriter().write(ps.toString());
 			return;
 

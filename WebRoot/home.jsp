@@ -182,9 +182,9 @@
 														<div class="overview-table-inner">
 															<h4>${p.name }</h4>
 															<img src="${pageContext.request.contextPath}${p.imgurl}" width="55px" height="55px"
-																alt="an image" class="image" onclick="findDishById('${p.id}')"/>
+																alt="an image" class="image" onclick="findDishById('${p.id}&dist=list')"/>
 															<p>价格: ￥${p.price }</p>
-															<p><a href="${pageContext.request.contextPath}/findDishById?id=${p.id}">速速抢购</a></p>
+															<p><a href="${pageContext.request.contextPath}/findDishById?id=${p.id}&dist=list">速速抢购</a></p>
 														</div>
 													</div>										
 													<c:if test="${vs.count%5==0}">
@@ -231,7 +231,7 @@
 											<ul class="art-vmenu">
 												<li><a href="page.html?i1"><span class="l"></span><span
 														class="r"></span><span class="t">主页</span> </a></li>
-												<li><a href="${pageContext.request.contextPath}/addProduct.jsp"><span class="l"></span><span
+												<li><a href="${pageContext.request.contextPath}/addDish.jsp"><span class="l"></span><span
 														class="r"></span><span class="t">添加菜品</span> </a></li>
 												<li><a href="${pageContext.request.contextPath}/backmanger.jsp"><span class="l"></span><span
 														class="r"></span><span class="t">管理菜品</span> </a></li>
