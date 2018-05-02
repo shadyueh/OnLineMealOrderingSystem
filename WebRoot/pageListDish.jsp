@@ -17,12 +17,11 @@
  
  var flag=window.confirm("确认删除吗？");
  if(flag){
- alert("开始删除");
  var parm={id:idp};
 $.ajax({
 type:"POST",
 async:false,
-contentType:false,
+headers:{"Content-Type":"application/x-www-form-urlencoded"},
 processData:false,
 cache:false,
 //dataType:'json',

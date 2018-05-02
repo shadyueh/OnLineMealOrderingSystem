@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.wangyanci.service.DishService;
 import com.wangyanci.serviceimp.DishServiceImp;
-import com.wangyanci.utils.GetAjaxParmStrUtils;
 
 public class DeleteDishById extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,16 +21,16 @@ public class DeleteDishById extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String paramString = GetAjaxParmStrUtils.getStringFromStream(request);
-		System.out.println("@@@@@@@@@@@@@@@@@@" + paramString);
-		String id = paramString.substring(paramString.lastIndexOf("="));
-		System.out.println("#################id in request in deletedash" + id + request.getParameterNames());
+		String id = request.getParameter("id");
 		DishService service = new DishServiceImp();
+
 		try {
 			service.deleteById(id);
 			response.getWriter().write("delete success");
 
-		} catch (SQLException e) {
+		} catch (
+
+		SQLException e) {
 			response.setStatus(500);
 			e.printStackTrace();
 		}
@@ -43,4 +42,13 @@ public class DeleteDishById extends HttpServlet {
 		doGet(request, response);
 	}
 
+	public String toBinary(String str) {
+
+		char[] strChar = str.toCharArray();
+		String result = "";
+		for (int i = 0; i < strChar.length; i++) {
+			result += Integer.toBinaryString(strChar[i]) + " ";
+		}
+		return result;
+	}
 }

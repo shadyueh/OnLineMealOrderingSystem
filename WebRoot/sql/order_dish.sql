@@ -26,5 +26,5 @@ CREATE TABLE `order_dish` (
   PRIMARY KEY (`order_id`,`dish_id`),
   KEY `dish_id` (`dish_id`),
   CONSTRAINT `order_dish_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
-  CONSTRAINT `order_dish_ibfk_2` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`)
+  CONSTRAINT `order_dish_ibfk_2` FOREIGN KEY (`dish_id`) REFERENCES `dish` (`id`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
