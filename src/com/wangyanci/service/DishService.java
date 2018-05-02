@@ -16,4 +16,6 @@ public interface DishService {
 
 	public PageDish findPageList(int page, int rows) throws SQLException;
 
+	public void updateDish(Dish p) throws SQLException;
+
 }

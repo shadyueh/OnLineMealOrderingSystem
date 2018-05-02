@@ -50,4 +50,11 @@ public class DishDaoImp implements DishDao {
 		return (int) count;
 	}
 
+	public void updateDish(Dish p) throws SQLException {
+		String sql = "update dish set name=?,price=?,pnum=?,category=?,imgurl=?,description=? where id=?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		runner.update(sql, p.getName(), p.getPrice(), p.getPnum(), p.getCategory(), p.getImgurl(), p.getDescription(),
+				p.getId());
+	}
+
 }

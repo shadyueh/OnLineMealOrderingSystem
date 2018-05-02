@@ -91,4 +91,14 @@
     <servlet-name>PageDishList</servlet-name>
     <url-pattern>/pageDishList</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditDish</display-name>
+    <servlet-name>EditDish</servlet-name>
+    <servlet-class>com.wangyanci.servlet.EditDish</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditDish</servlet-name>
+    <url-pattern>/editDish</url-pattern>
+  </servlet-mapping>
 </web-app>

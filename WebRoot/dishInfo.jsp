@@ -21,7 +21,7 @@
 		<tr>
 			<td rowspan="5"><img
 			width="150px" height="150px"
-				src="${pageContext.request.contextPath}${p.imgurl}">
+				src="${pageContext.request.contextPath}${p.imgurl}"></img>
 			</td>
 			<td>商品名称:${p.name }</td>
 		</tr>

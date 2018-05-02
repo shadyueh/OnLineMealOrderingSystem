@@ -17,4 +17,6 @@ public interface DishDao {
 
 	public int findAllCount() throws SQLException;
 
+	public void updateDish(Dish p) throws SQLException;
+
 }

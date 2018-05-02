@@ -5,7 +5,7 @@
 <title>添加商品</title>
 
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" /> 
-
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
 </head>
 <script type="text/javascript">
 function add(){

@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache"/>
 <title>Insert title here</title>
 
 </head>
@@ -23,8 +24,9 @@
 
 		location.href = "${pageContext.request.contextPath}/pageDishList?rows="+ value;
 	};
+
 </script>
-<body>
+<body >
 
 	<c:if test="${empty pd}">
 无产品信息
@@ -49,7 +51,7 @@
 				<td width="10%">${product.pnum}</td>
 				<td width="45%">${product.description}</td>
 				<td width="15%">
-				<a href="${pageContext.request.contextPath}/findbyid?id=${product.id}&dist=edit">编辑</a>&nbsp;&nbsp;&nbsp;
+				<a href="${pageContext.request.contextPath}/findDishById?id=${product.id}&dist=edit">编辑</a>&nbsp;&nbsp;&nbsp;
 				<a href="javascript:void(0)" onclick="dele('${product.id}')">删除</a>
 				</td> 
 				</tr>
