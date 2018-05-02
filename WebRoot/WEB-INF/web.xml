@@ -101,4 +101,14 @@
     <servlet-name>EditDish</servlet-name>
     <url-pattern>/editDish</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteDishById</display-name>
+    <servlet-name>DeleteDishById</servlet-name>
+    <servlet-class>com.wangyanci.servlet.DeleteDishById</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteDishById</servlet-name>
+    <url-pattern>/deleteDishById</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -84,7 +84,7 @@ url:'${pageContext.request.contextPath}/editDish',
 data:formData,
 success:function(result){
 $('#form')[0].reset();
-alert("添加成功!");
+alert("修改成功!");
 
 },
 error:function(){

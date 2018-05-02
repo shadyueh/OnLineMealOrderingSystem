@@ -19,4 +19,6 @@ public interface DishDao {
 
 	public void updateDish(Dish p) throws SQLException;
 
+	public void deleteById(String id) throws SQLException;
+
 }

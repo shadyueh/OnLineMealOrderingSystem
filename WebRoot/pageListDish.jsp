@@ -7,17 +7,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache"/>
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 
 </head>
 
 <script type="text/javascript">
- function dele(id){
+ function dele(idp){
  
  var flag=window.confirm("确认删除吗？");
  if(flag){
- location.href="${pageContext.request.contextPath}/delete?id="+id;
+ alert("开始删除");
+ var parm={id:idp};
+$.ajax({
+type:"POST",
+async:false,
+contentType:false,
+processData:false,
+cache:false,
+//dataType:'json',
+url:'${pageContext.request.contextPath}/deleteDishById',
+data:"id="+idp,
+success:function(result){
+alert("修改成功!");
+location.href="${pageContext.request.contextPath}/pageDishList?page=${pd.page}&rows=${pd.rows}"
+},
+error:function(){
+alert("异常，请检查！");
+window.close();
+}
+});
+ 
   }
+  
+  
+  
+  
  };
  
  function changeCurrentPage(value) {

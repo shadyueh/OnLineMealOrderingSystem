@@ -52,4 +52,10 @@ public class DishServiceImp implements DishService {
 		dishdao.updateDish(p);
 	}
 
+	public void deleteById(String id) throws SQLException {
+		DishDao dishdao = new DishDaoImp();
+		dishdao.deleteById(id);
+
+	}
+
 }

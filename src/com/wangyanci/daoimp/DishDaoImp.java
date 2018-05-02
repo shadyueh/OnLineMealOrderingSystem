@@ -1,5 +1,6 @@
 package com.wangyanci.daoimp;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -57,4 +58,16 @@ public class DishDaoImp implements DishDao {
 				p.getId());
 	}
 
+	public void deleteById(String id) throws SQLException {
+		String sql = "delete from dish where id=?";
+		PreparedStatement preparedStatement = DataSourceUtils.getDataSource().getConnection().prepareStatement(sql);
+		preparedStatement.setString(1, id);
+		int a = preparedStatement.executeUpdate();
+
+		// QueryRunner runner = new
+		// QueryRunner(DataSourceUtils.getDataSource());
+		// int a = runner.update(sql);
+		// // int a = runner.update(sql, id);
+		System.out.println("delet success^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^---" + a);
+	}
 }
