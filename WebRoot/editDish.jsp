@@ -85,7 +85,7 @@ data:formData,
 success:function(result){
 $('#form')[0].reset();
 alert("修改成功!");
-
+location.href=document.referrer;
 },
 error:function(){
 alert("异常，请检查！");
