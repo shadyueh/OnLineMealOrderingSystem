@@ -34,6 +34,13 @@ public class DishServiceImp implements DishService {
 
 		DishDao dishdao = new DishDaoImp();
 		List<Dish> dishs = dishdao.findPageList(page, rows);
+		if (dishs.size() < rows) {
+			for (int i = dishs.size(); i < rows; i++) {
+				Dish dish = new Dish();
+				dishs.add(dish);
+			}
+
+		}
 		pd.setDishs(dishs);
 
 		int totalCount = dishdao.findAllCount();

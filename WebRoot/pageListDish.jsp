@@ -93,7 +93,7 @@ window.close();
 无产品信息
 </c:if>
 	<c:if test="${not empty pd}">
-		<table border="1"  align="center" width="65%">
+		<table border="1"  align="center" width="80%">
 			<tr>
 				<th align="left"><input type="checkbox"></th>
 				<th style="display:none">菜品编号</th>
@@ -101,24 +101,29 @@ window.close();
 				<th >菜品价格</th>
 				<th >菜品余量</th>
 				<th >菜品描述</th>
+				<th >添加时间</th>
+				<th >最近修改时间</th>
 				<th >操作</th>
 			</tr>
 			<c:forEach items="${pd.dishs}" var="product">
               <tr> 
-                <td width="5%"><input type="checkbox"></td>
+                <td width="2%" height="22"><input type="checkbox"></td>
 				<td style="display:none">${product.id}</td>
-				<td width="15%">${product.name}</td>
-				<td width="10%">${product.price}</td>
-				<td width="10%">${product.pnum}</td>
-				<td width="42%">${product.description}</td>
-				<td width="18%">
+				<td width="14%" >${product.name}</td>
+				<td width="8%">${product.price}</td>
+				<td width="8%">${product.pnum}</td>
+				<td width="20%">${product.description}</td>
+				<td width="17%">${product.createtime}</td>
+				<td width="17%">${product.updatetime}</td>
+				<td width="20%">
+				<c:if test="${product.id ne null}">
 				&nbsp;<a href="${pageContext.request.contextPath}/findDishById?id=${product.id}&dist=edit">编辑</a>&nbsp;&nbsp;&nbsp;
 				<a href="javascript:void(0)" onclick="dele('${product.id}')">删除</a>&nbsp;&nbsp;&nbsp;
 				<c:if test="${product.state==0}">
-				<a href="javascript:void(0)" id="content"  onclick="updateState('${product.id}',1)">上架</a></c:if>
+				<a href="javascript:void(0)"   onclick="updateState('${product.id}',1)">上架</a></c:if>
 				<c:if test="${product.state==1}">
-				<a href="javascript:void(0)" id="content" onclick="updateState('${product.id}',0)">下架</a></c:if>
-				
+				<a href="javascript:void(0)"  onclick="updateState('${product.id}',0)">下架</a></c:if>
+				</c:if>
 				</td> 
 				</tr>
             </c:forEach>
@@ -130,7 +135,7 @@ window.close();
 						<a
 					href="${pageContext.request.contextPath}/pageDishList?page=1&rows=${pd.rows}">首页</a>&nbsp;&nbsp;&nbsp;
 						</c:if>
-					<c:if test="${pd.page==1}">
+					<c:if test="${pd.page==''}">
 							上一页&nbsp;&nbsp;&nbsp;
 						</c:if> <c:if test="${pd.page!=1}">
 						<a
