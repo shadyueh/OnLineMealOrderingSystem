@@ -17,7 +17,7 @@
 		<table border="1" align="center">
 			<tr>
 			<td rowspan="10"  align="right"><img id="image"
-			width="250" height="60%" alt="缓存失效！"
+			width="280" height="400" alt="缓存失效！"
 				src="${pageContext.request.contextPath}${p.imgurl}"/>
 			</td>
 			</tr>

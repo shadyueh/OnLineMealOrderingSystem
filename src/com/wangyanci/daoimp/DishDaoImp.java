@@ -30,12 +30,12 @@ public class DishDaoImp implements DishDao {
 
 	public void addDish(Dish p) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "insert into dish values(?,?,?,?,?,?,?)";
+		String sql = "insert into dish(id,name,price,pnum,category,imgurl,description,state) values(?,?,?,?,?,?,?,?)";
 		System.out.println("8########################################" + p.getPnum());
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 
 		runner.update(sql, p.getId(), p.getName(), p.getPrice(), p.getPnum(), p.getCategory(), p.getImgurl(),
-				p.getDescription());
+				p.getDescription(), p.getState());
 	}
 
 	public List<Dish> findPageList(int page, int rows) throws SQLException {

@@ -62,6 +62,7 @@ public class RegistUserServlet extends HttpServlet {
 		}
 
 		try {
+
 			BeanUtils.populate(user, paramap);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();

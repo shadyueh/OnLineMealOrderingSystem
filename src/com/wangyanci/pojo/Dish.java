@@ -1,11 +1,20 @@
 package com.wangyanci.pojo;
 
+import java.sql.Timestamp;
+
 public class Dish {
 	private String id;
 
 	private String name;
 
 	private Double price;
+
+	@Override
+	public String toString() {
+		return "Dish [id=" + id + ", name=" + name + ", price=" + price + ", pnum=" + pnum + ", category=" + category
+				+ ", imgurl=" + imgurl + ", description=" + description + ", createtime=" + createtime + ", updatetime="
+				+ updatetime + ", state=" + state + "]";
+	}
 
 	private Integer pnum;
 
@@ -14,6 +23,9 @@ public class Dish {
 	private String imgurl;
 
 	private String description;
+	private int state;
+	private Timestamp createtime;
+	private Timestamp updatetime;
 
 	public String getId() {
 		return id;
@@ -71,10 +83,28 @@ public class Dish {
 		this.description = description == null ? null : description.trim();
 	}
 
-	@Override
-	public String toString() {
-		return "Dish [id=" + id + ", name=" + name + ", price=" + price + ", pnum=" + pnum + ", category=" + category
-				+ ", imgurl=" + imgurl + ", description=" + description + "]";
+	public Timestamp getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(Timestamp updatetime) {
+		this.updatetime = updatetime;
+	}
+
+	public Timestamp getCreatetime() {
+		return createtime;
+	}
+
+	public void setCreatetime(Timestamp createtime) {
+		this.createtime = createtime;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
 	}
 
 }

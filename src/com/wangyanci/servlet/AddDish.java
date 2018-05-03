@@ -102,11 +102,20 @@ public class AddDish extends HttpServlet {
 				}
 				System.out.println("*****************" + map);
 				map.put("id", new String[] { UUID.randomUUID().toString() });// 封装id
+				map.put("state", new String[] { "1" });
 
+				Map<String, String> paramap = new HashMap<String, String>();
+				for (String str : map.keySet()) {
+
+					paramap.put(str, map.get(str)[0]);
+				}
+
+				// map.put("createtime", new String[] { "" });
+				// map.put("updatetime", new String[] { "" });
 				// 使用BeanUtils将所有数据封装到Product
 				Dish p = new Dish();
 
-				BeanUtils.populate(p, map);
+				BeanUtils.populate(p, paramap);
 
 				// 调用service完成添加操作
 				DishService service = new DishServiceImp();

@@ -30,7 +30,7 @@
 
 <body>
 	<h1>
-		注册成功，<span id="s">3</span>秒后跳转到<a href='http://localhost:8081${pageContext.request.contextPath}/home.jsp'>首页</a>
+		注册成功，<span id="s">3</span>秒后跳转到<a href='http://localhost:8080${pageContext.request.contextPath}'>首页</a>
 	</h1>
 </body>
 </html>
