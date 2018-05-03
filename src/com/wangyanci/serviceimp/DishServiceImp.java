@@ -58,4 +58,10 @@ public class DishServiceImp implements DishService {
 
 	}
 
+	public void updateDishState(String id, int state) throws SQLException {
+		DishDao dishdao = new DishDaoImp();
+		dishdao.updateDishState(id, state);
+
+	}
+
 }

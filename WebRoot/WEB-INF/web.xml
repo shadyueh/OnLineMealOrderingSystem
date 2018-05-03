@@ -111,4 +111,14 @@
     <servlet-name>DeleteDishById</servlet-name>
     <url-pattern>/deleteDishById</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateDishState</display-name>
+    <servlet-name>UpdateDishState</servlet-name>
+    <servlet-class>com.wangyanci.servlet.UpdateDishState</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateDishState</servlet-name>
+    <url-pattern>/updateDishState</url-pattern>
+  </servlet-mapping>
 </web-app>

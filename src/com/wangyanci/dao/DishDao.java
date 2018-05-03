@@ -21,4 +21,6 @@ public interface DishDao {
 
 	public void deleteById(String id) throws SQLException;
 
+	public void updateDishState(String id, int state) throws SQLException;
+
 }

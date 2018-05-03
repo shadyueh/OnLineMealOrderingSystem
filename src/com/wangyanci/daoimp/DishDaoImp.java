@@ -70,4 +70,11 @@ public class DishDaoImp implements DishDao {
 		// // int a = runner.update(sql, id);
 		System.out.println("delet success^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^---" + a);
 	}
+
+	public void updateDishState(String id, int state) throws SQLException {
+		String sql = "update dish set state=? where id=?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		runner.update(sql, state, id);
+
+	}
 }

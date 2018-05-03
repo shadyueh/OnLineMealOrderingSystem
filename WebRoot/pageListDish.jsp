@@ -44,6 +44,43 @@ window.close();
   
  };
  
+ 
+ 
+  function updateState(idp,state){
+   var content;
+  if (state==1){
+  content="上架"
+  }else {
+   content="下架"
+  }
+
+ var flag=window.confirm("确认"+content+"吗？");
+ if(flag){
+ var parm={id:idp};
+$.ajax({
+type:"POST",
+async:false,
+headers:{"Content-Type":"application/x-www-form-urlencoded"},
+processData:false,
+cache:false,
+url:'${pageContext.request.contextPath}/updateDishState',
+data:"id="+idp+"&state="+state,
+success:function(result){
+alert(content+"成功!");
+location.href="${pageContext.request.contextPath}/pageDishList?page=${pd.page}&rows=${pd.rows}"
+},
+error:function(){
+alert("异常，请检查！");
+window.close();
+}
+});
+ 
+  }
+  
+  
+  
+  
+ };
  function changeCurrentPage(value) {
 
 		location.href = "${pageContext.request.contextPath}/pageDishList?rows="+ value;
@@ -58,7 +95,7 @@ window.close();
 	<c:if test="${not empty pd}">
 		<table border="1"  align="center" width="65%">
 			<tr>
-				<th ><input type="checkbox"><></th>
+				<th align="left"><input type="checkbox"></th>
 				<th style="display:none">菜品编号</th>
 				<th >菜品名称</th>
 				<th >菜品价格</th>
@@ -73,10 +110,15 @@ window.close();
 				<td width="15%">${product.name}</td>
 				<td width="10%">${product.price}</td>
 				<td width="10%">${product.pnum}</td>
-				<td width="45%">${product.description}</td>
-				<td width="15%">
-				<a href="${pageContext.request.contextPath}/findDishById?id=${product.id}&dist=edit">编辑</a>&nbsp;&nbsp;&nbsp;
-				<a href="javascript:void(0)" onclick="dele('${product.id}')">删除</a>
+				<td width="42%">${product.description}</td>
+				<td width="18%">
+				&nbsp;<a href="${pageContext.request.contextPath}/findDishById?id=${product.id}&dist=edit">编辑</a>&nbsp;&nbsp;&nbsp;
+				<a href="javascript:void(0)" onclick="dele('${product.id}')">删除</a>&nbsp;&nbsp;&nbsp;
+				<c:if test="${product.state==0}">
+				<a href="javascript:void(0)" id="content"  onclick="updateState('${product.id}',1)">上架</a></c:if>
+				<c:if test="${product.state==1}">
+				<a href="javascript:void(0)" id="content" onclick="updateState('${product.id}',0)">下架</a></c:if>
+				
 				</td> 
 				</tr>
             </c:forEach>
