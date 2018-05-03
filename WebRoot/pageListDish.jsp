@@ -28,7 +28,7 @@ cache:false,
 url:'${pageContext.request.contextPath}/deleteDishById',
 data:"id="+idp,
 success:function(result){
-alert("修改成功!");
+alert("删除成功!");
 location.href="${pageContext.request.contextPath}/pageDishList?page=${pd.page}&rows=${pd.rows}"
 },
 error:function(){
@@ -85,6 +85,51 @@ window.close();
 
 		location.href = "${pageContext.request.contextPath}/pageDishList?rows="+ value;
 	};
+	var arr=[];
+	arr[0] = new Array("state","已上架","已下架");
+	arr[1] = new Array("name");
+	arr[2] = new Array("price","0~5","5~10","10~15","15~25","25~40","40~60","60~85","85~115","115以上");
+	arr[3] = new Array("pnum","0~5","5~10","10~25","25~40","40以上");
+	arr[4] = new Array("createtime","酒水","饮料","荤菜","素菜","海鲜","野味","其它");
+ function changeCondtion(value){
+ 	var select2 = document.getElementById("select2");
+			for(var i=0;i<arr.length;i++){
+				var inarr = arr[i];
+				var str = inarr[0];
+				if(value == str&&value !="name"){
+				
+					var select2 = document.getElementById("condtion");
+
+											alert(select2.style.display+"gfgdfgd");
+					//alert(select2.currentStyle["display"]+"gfgdfgd");
+					if(select2.style.display=="none"){
+					select2.style.display="inline";
+					}else{
+						var ops = select2.getElementsByTagName("option");
+						for(var x=0;x<ops.length;x++){
+						var op = ops[x];
+						select2.removeChild(op);
+						x--;
+						}
+						
+						for(var j=1;j<inarr.length;j++){
+						var instr = inarr[j];
+						var option = document.createElement("option");
+						var text = document.createTextNode(instr);
+						option.appendChild(text);
+						select2.appendChild(option);
+					}
+						
+					}
+
+					
+				}
+			}
+ }
+
+
+
+
 
 </script>
 <body >
@@ -180,6 +225,22 @@ window.close();
 					</c:forEach>
 				</td>
 			</tr>
+				<tr>
+				<td colspan="9" align="right">
+				<select name="searchbycond" onchange="changeCondtion(this.value)">
+						<option>--按条件查询--</option>
+						<option value="state">按状态查询</option>
+						<option value="name">按名称查询</option>
+						<option value="price">按价格查询</option>
+						<option value="pnum">按余量查询</option>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				
+				<select name="condtion" id="condtion" style="display:none">
+				<option>--所有--</option>
+				</select>
+			<input type="text" name="pnum" style="display:none">
+				</td>
+			</tr>
 			<tr>
 				<td colspan="9" align="center"><my:page pd="${pd}" />
 				</td>
@@ -187,6 +248,8 @@ window.close();
 		</table>
 
        &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/add.jsp">添加商品</a> 
+        &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/backmanger.jsp">返回管理界面</a>
+        &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}">返回主界面</a>  
 	</c:if>
 
 
