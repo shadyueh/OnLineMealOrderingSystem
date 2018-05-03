@@ -90,46 +90,86 @@ window.close();
 	arr[1] = new Array("name");
 	arr[2] = new Array("price","0~5","5~10","10~15","15~25","25~40","40~60","60~85","85~115","115以上");
 	arr[3] = new Array("pnum","0~5","5~10","10~25","25~40","40以上");
-	arr[4] = new Array("createtime","酒水","饮料","荤菜","素菜","海鲜","野味","其它");
+	arr[4] = new Array("category","酒水","饮料","荤菜","素菜","海鲜","野味","其它");
  function changeCondtion(value){
+ //alert(value);
  	var select2 = document.getElementById("select2");
 			for(var i=0;i<arr.length;i++){
 				var inarr = arr[i];
 				var str = inarr[0];
-				if(value == str&&value !="name"){
 				
+				
+				if(value == str&&value !="name"){
+				//alert("1");
 					var select2 = document.getElementById("condtion");
-
-											alert(select2.style.display+"gfgdfgd");
-					//alert(select2.currentStyle["display"]+"gfgdfgd");
+					var name = document.getElementById("name");
+					if(name.style.display=="inline"){
+					//alert("input----not name---"+name.style.display);
+					name.style.display="none";
+					}
+				
+					
+					
+					
 					if(select2.style.display=="none"){
+					
+					//alert("select2----not name---"+select2.style.display);
 					select2.style.display="inline";
-					}else{
+					}				
 						var ops = select2.getElementsByTagName("option");
 						for(var x=0;x<ops.length;x++){
 						var op = ops[x];
 						select2.removeChild(op);
-						x--;
-						}
-						
+						x--;}
+	
+					//alert("数组长度---"+inarr.length);
 						for(var j=1;j<inarr.length;j++){
 						var instr = inarr[j];
 						var option = document.createElement("option");
 						var text = document.createTextNode(instr);
 						option.appendChild(text);
 						select2.appendChild(option);
-					}
-						
+					
+	
 					}
 
+					return;
+				}else if(value =="name"){
+				//alert("2");
+					var select2 = document.getElementById("condtion");
+					var name = document.getElementById("name");
+					if(select2.style.display=="inline"){
 					
+						//alert("select2----in name---"+select2.style.display);
+						select2.style.display="none";
+					}
+					
+					if(name.style.display=="none"){
+					//alert("input----in name---"+name.style.display);
+							name.style.display="inline";
+						}
+				return;
+				}else if(value =="--所有--"){
+				var select2 = document.getElementById("condtion");
+					var name = document.getElementById("name");
+				if(select2.style.display=="inline"){
+					
+						select2.style.display="none";
+					}
+					if(name.style.display=="inline"){
+					
+					name.style.display="none";
+					}
+					return;
 				}
 			}
  }
 
 
 
-
+function search(){
+alert("查询")
+}
 
 </script>
 <body >
@@ -226,19 +266,23 @@ window.close();
 				</td>
 			</tr>
 				<tr>
-				<td colspan="9" align="right">
-				<select name="searchbycond" onchange="changeCondtion(this.value)">
-						<option>--按条件查询--</option>
+				<td colspan="9" align="right" >
+				
+					<select name="condtion" id="condtion" width="50" height="22" style="display:none">
+				<option>--所有--</option>
+				</select>
+				<input type="text" name="name" id=name style="display:none">
+				<button type="button" name="bt" id="bt" onclick="search()" >查询</button>
+				<select name="searchbycond" height="22"  onchange="changeCondtion(this.value)">
+						<option  width="60">--所有--</option>
 						<option value="state">按状态查询</option>
 						<option value="name">按名称查询</option>
 						<option value="price">按价格查询</option>
 						<option value="pnum">按余量查询</option>
-				</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				
-				<select name="condtion" id="condtion" style="display:none">
-				<option>--所有--</option>
+						<option value="category">按分类查询</option>
 				</select>
-			<input type="text" name="pnum" style="display:none">
+				
+			
 				</td>
 			</tr>
 			<tr>
