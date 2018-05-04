@@ -50,8 +50,13 @@ window.close();
 				<td>选择类别类别</td>
 				<td><select name="category">
 						<option>--请选择类别-</option>
-						<option value="菜肴">菜肴</option>
-						<option value="饮品">饮品</option>
+						<option value="酒水">酒水</option>
+						<option value="饮料">饮料</option>
+						<option value="荤菜">荤菜</option>
+						<option value="素菜">素菜</option>
+						<option value="海鲜">海鲜</option>
+						<option value="野味">野味</option>
+						<option value="其它">其它</option>
 				</select></td>
 			</tr>
 			<tr>

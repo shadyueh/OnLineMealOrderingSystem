@@ -22,4 +22,6 @@ public interface DishService {
 
 	public void updateDishState(String id, int state) throws SQLException;
 
+	public PageDish findPageListByCondtion(int page, int rows, String paramkey, String paramvalue) throws SQLException;
+
 }

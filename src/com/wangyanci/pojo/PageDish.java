@@ -7,6 +7,31 @@ public class PageDish {
 	private int rows; // 每页条数
 	private int totalPage; // 总页数
 	private int totalCount; // 总条数
+	private String paramkey;
+	private String paramvalue;
+
+	@Override
+	public String toString() {
+		return "PageDish [page=" + page + ", rows=" + rows + ", totalPage=" + totalPage + ", totalCount=" + totalCount
+				+ ", paramkey=" + paramkey + ", paramvalue=" + paramvalue + ", dishs=" + dishs + "]";
+	}
+
+	public String getParamkey() {
+		return paramkey;
+	}
+
+	public void setParamkey(String paramkey) {
+		this.paramkey = paramkey;
+	}
+
+	public String getParamvalue() {
+		return paramvalue;
+	}
+
+	public void setParamvalue(String paramvalue) {
+		this.paramvalue = paramvalue;
+	}
+
 	private List<Dish> dishs; // 每页数据
 
 	public int getPage() {
@@ -47,12 +72,6 @@ public class PageDish {
 
 	public void setDishs(List<Dish> dishs) {
 		this.dishs = dishs;
-	}
-
-	@Override
-	public String toString() {
-		return "PageDish [page=" + page + ", rows=" + rows + ", totalPage=" + totalPage + ", totalCount=" + totalCount
-				+ ", dishs=" + dishs + "]";
 	}
 
 }

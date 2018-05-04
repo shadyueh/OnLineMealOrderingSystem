@@ -35,8 +35,13 @@
 				<td>选择类别类别</td>
 				<td><select name="category" id="category" value="${p.category}">
 						<option value="未知">--请选择类别-</option>
-						<option value="菜肴" ${p.category=="菜肴"?'selected':' '}>菜肴</option>
-						<option value="饮品" ${p.category=="饮品"?'selected':' '}>饮品</option>
+						<option value="酒水" ${p.category=="酒水"?'selected':' '}>酒水</option>
+						<option value="饮料" ${p.category=="饮料"?'selected':' '}>饮料</option>
+						<option value="荤菜" ${p.category=="荤菜"?'selected':' '}>荤菜</option>
+						<option value="素菜" ${p.category=="素菜"?'selected':' '}>素菜</option>
+						<option value="海鲜" ${p.category=="海鲜"?'selected':' '}>海鲜</option>
+						<option value="野味" ${p.category=="野味"?'selected':' '}>野味</option>
+						<option value="其它" ${p.category=="其它"?'selected':' '}>其它</option>
 				</select></td>
 			</tr>
 			<tr>

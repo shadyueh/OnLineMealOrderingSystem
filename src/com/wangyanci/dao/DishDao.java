@@ -23,4 +23,26 @@ public interface DishDao {
 
 	public void updateDishState(String id, int state) throws SQLException;
 
+	public int findAllCountByText(String paramkey, String paramvalue) throws SQLException;
+
+	public List<Dish> findPageListByText(int page, int rows, String paramkey, String paramvalue) throws SQLException;
+
+	public int findAllCountByLike(String paramkey, String paramvalue) throws SQLException;
+
+	public List<Dish> findPageListByLike(int page, int rows, String paramkey, String paramvalue) throws SQLException;
+
+	public int findAllCountByNum(String paramkey, int paramvalue1) throws SQLException;
+
+	public List<Dish> findPageListByNum(int page, int rows, String paramkey, int paramvalue1) throws SQLException;
+
+	public int findAllCountByBetweenPrice(String paramkey, int parseInt, int parseInt2) throws SQLException;
+
+	public List<Dish> findPageListByBetweenPrice(int page, int rows, String paramkey, int parseInt, int parseInt2)
+			throws SQLException;
+
+	public int findAllCountByBetweenPnum(String paramkey, int parseInt, int parseInt2) throws SQLException;
+
+	public List<Dish> findPageListByBetweenPnum(int page, int rows, String paramkey, int parseInt, int parseInt2)
+			throws SQLException;
+
 }

@@ -77,4 +77,76 @@ public class DishDaoImp implements DishDao {
 		runner.update(sql, state, id);
 
 	}
+
+	public int findAllCountByText(String paramkey, String paramvalue) throws SQLException {
+		String sql = "select count(*) from dish where category=?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		long count = (Long) runner.query(sql, new ScalarHandler(), paramvalue);
+		return (int) count;
+	}
+
+	public List<Dish> findPageListByText(int page, int rows, String paramkey, String paramvalue) throws SQLException {
+		String sql = "select * from (select * from dish where category=?) as dishbycondtion limit ?,?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		return runner.query(sql, new BeanListHandler<Dish>(Dish.class), paramvalue, (page - 1) * rows, rows);
+	}
+
+	public int findAllCountByLike(String paramkey, String paramvalue) throws SQLException {
+		String sql = "select count(*) from dish where name like ?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		long count = (Long) runner.query(sql, new ScalarHandler(), "%" + paramvalue + "%");
+		return (int) count;
+
+	}
+
+	public List<Dish> findPageListByLike(int page, int rows, String paramkey, String paramvalue) throws SQLException {
+		String sql = "select * from(select * from dish where name like ?) as dishbycondtion limit ?,?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		return runner.query(sql, new BeanListHandler<Dish>(Dish.class), "%" + paramvalue + "%", (page - 1) * rows,
+				rows);
+
+	}
+
+	public int findAllCountByNum(String paramkey, int paramvalue1) throws SQLException {
+		String sql = "select count(*) from dish where state=?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		long count = (Long) runner.query(sql, new ScalarHandler(), paramvalue1);
+		return (int) count;
+	}
+
+	public List<Dish> findPageListByNum(int page, int rows, String paramkey, int paramvalue1) throws SQLException {
+		System.out.println("传入数据库参数----------------------paramkey：：：" + paramkey + ";paramvalue1::::" + paramvalue1);
+		String sql = "select * from (select * from dish where state=?) as dishbycondtion limit ?,?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		return runner.query(sql, new BeanListHandler<Dish>(Dish.class), paramvalue1, (page - 1) * rows, rows);
+	}
+
+	public int findAllCountByBetweenPrice(String paramkey, int parseInt, int parseInt2) throws SQLException {
+		String sql = "select count(*) from dish where price between ? and ?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		long count = (Long) runner.query(sql, new ScalarHandler(), parseInt, parseInt2);
+		return (int) count;
+	}
+
+	public List<Dish> findPageListByBetweenPrice(int page, int rows, String paramkey, int parseInt, int parseInt2)
+			throws SQLException {
+		String sql = "select * from(select * from dish where price between ? and ?) as dishbycondtion limit ?,?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		return runner.query(sql, new BeanListHandler<Dish>(Dish.class), parseInt, parseInt2, (page - 1) * rows, rows);
+	}
+
+	public int findAllCountByBetweenPnum(String paramkey, int parseInt, int parseInt2) throws SQLException {
+		String sql = "select count(*) from dish where pnum between ? and ?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		long count = (Long) runner.query(sql, new ScalarHandler(), parseInt, parseInt2);
+		return (int) count;
+	}
+
+	public List<Dish> findPageListByBetweenPnum(int page, int rows, String paramkey, int parseInt, int parseInt2)
+			throws SQLException {
+		String sql = "select * from(select * from dish where pnum between ? and ?) as dishbycondtion limit ?,?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		return runner.query(sql, new BeanListHandler<Dish>(Dish.class), parseInt, parseInt2, (page - 1) * rows, rows);
+	}
+
 }

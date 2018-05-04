@@ -45,7 +45,8 @@ public class DishServiceImp implements DishService {
 
 		int totalCount = dishdao.findAllCount();
 		int totalPage = (int) Math.ceil(totalCount * 1.0 / rows);
-
+		pd.setParamkey("null");
+		pd.setParamvalue("null");
 		pd.setTotalCount(totalCount);
 		pd.setTotalPage(totalPage);
 		pd.setRows(rows);
@@ -68,6 +69,72 @@ public class DishServiceImp implements DishService {
 	public void updateDishState(String id, int state) throws SQLException {
 		DishDao dishdao = new DishDaoImp();
 		dishdao.updateDishState(id, state);
+
+	}
+
+	public PageDish findPageListByCondtion(int page, int rows, String paramkey, String paramvalue) throws SQLException {
+
+		PageDish pd = new PageDish();
+
+		DishDao dishdao = new DishDaoImp();
+
+		int totalCount;
+		List<Dish> dishs;
+
+		if (paramkey.equals("state")) {
+			int paramvalue1;
+			System.out.println("--------paramvalue1-----------" + paramvalue);
+			if (paramvalue.equals("已上架")) {
+				paramvalue1 = 1;
+			} else {
+				paramvalue1 = 0;
+
+			}
+			totalCount = dishdao.findAllCountByNum(paramkey, paramvalue1);
+			dishs = dishdao.findPageListByNum(page, rows, paramkey, paramvalue1);
+			System.out.println("状态信息从数据库条件查询到----------------------" + dishs);
+		} else if (paramkey.equals("name")) {
+			System.out.println("--------name-----------" + paramvalue);
+			totalCount = dishdao.findAllCountByLike(paramkey, paramvalue);
+			dishs = dishdao.findPageListByLike(page, rows, paramkey, paramvalue);
+			System.out.println("状态信息从数据库条件查询到----------------------" + dishs);
+		} else if (paramkey.equals("category")) {
+
+			totalCount = dishdao.findAllCountByText(paramkey, paramvalue);
+			dishs = dishdao.findPageListByText(page, rows, paramkey, paramvalue);
+
+		} else if (paramkey.equals("price")) {
+			String[] strs = paramvalue.split("~");
+			totalCount = dishdao.findAllCountByBetweenPrice(paramkey, Integer.parseInt(strs[0]),
+					Integer.parseInt(strs[1]));
+			dishs = dishdao.findPageListByBetweenPrice(page, rows, paramkey, Integer.parseInt(strs[0]),
+					Integer.parseInt(strs[1]));
+		} else {
+			String[] strs = paramvalue.split("~");
+			totalCount = dishdao.findAllCountByBetweenPnum(paramkey, Integer.parseInt(strs[0]),
+					Integer.parseInt(strs[1]));
+			dishs = dishdao.findPageListByBetweenPnum(page, rows, paramkey, Integer.parseInt(strs[0]),
+					Integer.parseInt(strs[1]));
+		}
+
+		if (dishs.size() < rows) {
+			for (int i = dishs.size(); i < rows; i++) {
+				Dish dish = new Dish();
+				dishs.add(dish);
+			}
+
+		}
+		System.out.println("从数据库条件查询到----------------------" + dishs);
+		pd.setDishs(dishs);
+		pd.setParamkey(paramkey);
+		pd.setParamvalue(paramvalue);
+		int totalPage = (int) Math.ceil(totalCount * 1.0 / rows);
+
+		pd.setTotalCount(totalCount);
+		pd.setTotalPage(totalPage);
+		pd.setRows(rows);
+		pd.setPage(page);
+		return pd;
 
 	}
 
