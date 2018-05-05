@@ -39,7 +39,7 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="right">
-			<img src="${pageContext.request.contextPath}/images/buy.bmp" onclick="addProductToCart('${p.id}')">
+			<img src="${pageContext.request.contextPath}/images/buy.bmp" onclick="addDishToCart('${p.id}')">
 			</td>
 		</tr>
 	</table>

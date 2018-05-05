@@ -121,4 +121,14 @@
     <servlet-name>UpdateDishState</servlet-name>
     <url-pattern>/updateDishState</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddDishToCart</display-name>
+    <servlet-name>AddDishToCart</servlet-name>
+    <servlet-class>com.wangyanci.servlet.AddDishToCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddDishToCart</servlet-name>
+    <url-pattern>/addDishToCart</url-pattern>
+  </servlet-mapping>
 </web-app>

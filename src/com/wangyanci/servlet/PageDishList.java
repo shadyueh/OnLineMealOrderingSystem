@@ -34,27 +34,15 @@ public class PageDishList extends HttpServlet {
 			rows = Integer.parseInt(_rows);
 		}
 		String paramkey = request.getParameter("paramkey");
+
 		DishService service;
 		System.out.println("paramkey-------------" + paramkey + "--------------------");
-		if (paramkey == null) {
+		System.out.println("********paramkey != null && paramkey != 'null'-----" + paramkey != null
+				&& paramkey != "null" + "--------------------");
 
-			service = new DishServiceImp();
-			try {
-				PageDish pd = service.findPageList(page, rows);
-				// 将p存储到request域，请求转发到productInfo.jsp页面，展示 商品信息.
-				System.out.println(pd);
-				request.setAttribute("pd", pd);
+		if (paramkey != null && !paramkey.equals("null")) {
 
-				request.getRequestDispatcher("/pageListDish.jsp").forward(request, response);
-				// response.getWriter().write(ps.toString());
-				return;
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		} else {
-
+			System.out.println("~~~~~~~~~~~~~~~~~~~~不应该进来~~~~~~~~~~~~~~");
 			String paramvalue = request.getParameter("paramvalue");
 			paramvalue = new String(paramvalue.getBytes("ISO-8859-1"), "UTF-8");
 			service = new DishServiceImp();
@@ -65,6 +53,24 @@ public class PageDishList extends HttpServlet {
 				request.setAttribute("pd", pd);
 
 				request.getRequestDispatcher("/pageListDish.jsp").forward(request, response);
+				return;
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		} else {
+
+			service = new DishServiceImp();
+			try {
+				System.out.println("~~~~~~~~~~~~~~~~~~~~应该进来~~~~~~~~~~~~~~");
+				PageDish pd = service.findPageList(page, rows);
+				// 将p存储到request域，请求转发到productInfo.jsp页面，展示 商品信息.
+				System.out.println(pd);
+				request.setAttribute("pd", pd);
+
+				request.getRequestDispatcher("/pageListDish.jsp").forward(request, response);
+				// response.getWriter().write(ps.toString());
 				return;
 
 			} catch (SQLException e) {

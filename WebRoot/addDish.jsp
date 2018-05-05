@@ -21,7 +21,7 @@ dataType:'text',
 url:'${pageContext.request.contextPath}/addDish',
 data:formData,
 success:function(result){
-$('#form')[0].reset();
+//$('#form')[0].reset();
 alert("添加成功!");
 
 },

@@ -111,6 +111,7 @@ public class DishServiceImp implements DishService {
 					Integer.parseInt(strs[1]));
 		} else {
 			String[] strs = paramvalue.split("~");
+			System.out.println("************第一个数字：" + strs[0] + "************第一个数字：" + strs[1]);
 			totalCount = dishdao.findAllCountByBetweenPnum(paramkey, Integer.parseInt(strs[0]),
 					Integer.parseInt(strs[1]));
 			dishs = dishdao.findPageListByBetweenPnum(page, rows, paramkey, Integer.parseInt(strs[0]),
