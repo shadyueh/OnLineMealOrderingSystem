@@ -8,7 +8,7 @@ public class Cart {
 	// Map集合用商品的ID作为Map的key , 购物项作为Map的value
 	private Map<String, CartDish> map = new HashMap<String, CartDish>();
 	// 总计:
-	private Double total;
+	private Double total = 0.0;
 
 	// 提供三个方法:
 	// 将购物项添加到购物车:
