@@ -171,4 +171,14 @@
     <servlet-name>ChangeDishNumToCart</servlet-name>
     <url-pattern>/changeDishNumToCart</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListDishToUser</display-name>
+    <servlet-name>ListDishToUser</servlet-name>
+    <servlet-class>com.wangyanci.servlet.ListDishToUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListDishToUser</servlet-name>
+    <url-pattern>/listDishToUser</url-pattern>
+  </servlet-mapping>
 </web-app>

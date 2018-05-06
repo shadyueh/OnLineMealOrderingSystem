@@ -172,7 +172,7 @@
 											<p>
 												<span class="art-button-wrapper"> <span class="l">
 												</span> <span class="r"> </span> <a class="art-button"
-													href="javascript:void(0)">更多商品...</a> </span>
+													href="${pageContext.request.contextPath}/listDishToUser">更多商品...</a> </span>
 											</p>
 											<div class="cleared"></div>
 											<div class="art-content-layout overview-table">
