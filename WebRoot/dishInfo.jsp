@@ -91,7 +91,7 @@ location.href=document.referrer;
 		</tr>
 		<tr>
 		
-				<td id="num"> 
+				<td id="num" > 
 		<span style="display:none">单价:</span><span class="price" style="display:none">${p.price}</span> 
 		
 		<p >总价：<label id="total"></label></p> 
@@ -110,7 +110,7 @@ location.href=document.referrer;
 				<c:if test="${!empty sessionScope.cart}">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="goon()">继续选订</a></c:if>
 				<c:if test="${!empty sessionScope.cart}">
-				&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)">查看购物车</a></c:if>
+				&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/showCart">查看购物车</a></c:if>
 <c:if test="${!empty sessionScope.cart}">
 				&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="updateState('${product.id}',1)">去结算</a></c:if>
 			</td>

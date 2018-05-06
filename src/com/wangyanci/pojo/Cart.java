@@ -10,6 +10,27 @@ public class Cart {
 	// 总计:
 	private Double total = 0.0;
 
+	public Map<String, CartDish> getMap() {
+		return map;
+	}
+
+	public void setMap(Map<String, CartDish> map) {
+		this.map = map;
+	}
+
+	public Double getTotal() {
+		return total;
+	}
+
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+
+	@Override
+	public String toString() {
+		return "Cart [map=" + map + ", total=" + total + "]";
+	}
+
 	// 提供三个方法:
 	// 将购物项添加到购物车:
 	public void addCart(CartDish cartDish) {

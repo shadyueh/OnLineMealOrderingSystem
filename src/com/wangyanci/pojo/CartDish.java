@@ -11,6 +11,11 @@ public class CartDish {
 		return dish;
 	}
 
+	@Override
+	public String toString() {
+		return "CartDish [dish=" + dish + ", count=" + count + ", subtotal=" + subtotal + "]";
+	}
+
 	public void setDish(Dish dish) {
 		this.dish = dish;
 	}

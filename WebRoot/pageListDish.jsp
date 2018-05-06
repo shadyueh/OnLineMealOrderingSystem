@@ -33,7 +33,7 @@
 			</tr>
 			<c:forEach items="${pd.dishs}" var="product">
               <tr> 
-                <td width="2%" height="22"><input type="checkbox"></td>
+                <td width="2%"><img width="22" height="22" src="${pageContext.request.contextPath}${product.imgurl}"></img></td>
 				<td style="display:none">${product.id}</td>
 				<td width="14%" >${product.name}</td>
 				<td width="8%">${product.price}</td>

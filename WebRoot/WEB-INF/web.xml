@@ -131,4 +131,44 @@
     <servlet-name>AddDishToCart</servlet-name>
     <url-pattern>/addDishToCart</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShowCart</display-name>
+    <servlet-name>ShowCart</servlet-name>
+    <servlet-class>com.wangyanci.servlet.ShowCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShowCart</servlet-name>
+    <url-pattern>/showCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteDishFromCart</display-name>
+    <servlet-name>DeleteDishFromCart</servlet-name>
+    <servlet-class>com.wangyanci.servlet.DeleteDishFromCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteDishFromCart</servlet-name>
+    <url-pattern>/deleteDishFromCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteAllFromCart</display-name>
+    <servlet-name>DeleteAllFromCart</servlet-name>
+    <servlet-class>com.wangyanci.servlet.DeleteAllFromCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteAllFromCart</servlet-name>
+    <url-pattern>/deleteAllFromCart</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeDishNumToCart</display-name>
+    <servlet-name>ChangeDishNumToCart</servlet-name>
+    <servlet-class>com.wangyanci.servlet.ChangeDishNumToCart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeDishNumToCart</servlet-name>
+    <url-pattern>/changeDishNumToCart</url-pattern>
+  </servlet-mapping>
 </web-app>
