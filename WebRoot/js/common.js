@@ -23,9 +23,9 @@ var TT = TAOTAO = {
 	// 编辑器参数
 	kingEditorParams : {
 		//指定上传文件参数名称
-		filePostName  : "uploadFile",
+		filePostName  : "f",
 		//指定上传文件请求的url。
-		uploadJson : '/pic/upload',
+		uploadJson :'http://localhost:8080/OnLineOrderingSystem/picUpload',
 		//上传类型，分别为image、flash、media、file
 		dir : "image"
 	},
@@ -76,7 +76,7 @@ var TT = TAOTAO = {
         		var imgs = data.pics.split(",");
         		for(var i in imgs){
         			if($.trim(imgs[i]).length > 0){
-        				_ele.siblings(".pics").find("ul").append("<li><a href='"+imgs[i]+"' target='_blank'><img src='"+imgs[i]+"' width='80' height='50' /></a></li>");
+        				_ele.siblings(".pics").find("ul").append("<li><a href='"+imgs[i]+"' target='_blank'><img src='"+imgs[i]+"' width='80' height='200' /></a></li>");
         			}
         		}
         	}
@@ -93,7 +93,7 @@ var TT = TAOTAO = {
 								imgArray.push(data.url);
 								form.find(".pics ul").append("<li><a href='"+data.url+"' target='_blank'><img src='"+data.url+"' width='80' height='50' /></a></li>");
 							});
-							form.find("[name=image]").val(imgArray.join(","));
+							form.find("[name=imgurl]").val(imgArray.join(","));
 							editor.hideDialog();
 						}
 					});

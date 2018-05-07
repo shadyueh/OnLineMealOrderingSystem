@@ -30,7 +30,7 @@
          		<li>
        		 <span>餐桌管理</span>
          		<ul>
-	         		<li><a href="${pageContext.request.contextPath}/addProduct.jsp"><span class="l"></span><span
+	         		<li><a href="${pageContext.request.contextPath}/backmanger1.jsp"><span class="l"></span><span
 														class="r"></span><span class="t">添加餐桌</span> </a></li>
 					<li><a href="${pageContext.request.contextPath}/backmanger.jsp"><span class="l"></span><span
 														class="r"></span><span class="t">重置菜品</span> </a></li>

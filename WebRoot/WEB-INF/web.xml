@@ -181,4 +181,24 @@
     <servlet-name>ListDishToUser</servlet-name>
     <url-pattern>/listDishToUser</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddTable</display-name>
+    <servlet-name>AddTable</servlet-name>
+    <servlet-class>com.wangyanci.servlet.AddTable</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddTable</servlet-name>
+    <url-pattern>/addTable</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PicUpload</display-name>
+    <servlet-name>PicUpload</servlet-name>
+    <servlet-class>com.wangyanci.servlet.PicUpload</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PicUpload</servlet-name>
+    <url-pattern>/picUpload</url-pattern>
+  </servlet-mapping>
 </web-app>
