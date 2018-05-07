@@ -6,52 +6,34 @@
 <title>jQuery实现购物车多物品数量的加减+总价计算</title> 
 <script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
 <script> 
-$(function(){ 
-$(".add").click(function(){ 
-var t=$(this).parent().find('input[class*=text_box]'); 
-t.val(parseInt(t.val())+1) 
-setTotal(); 
-}) 
-$(".min").click(function(){ 
-var t=$(this).parent().find('input[class*=text_box]'); 
-t.val(parseInt(t.val())-1) 
-if(parseInt(t.val())<0){ 
-t.val(0); 
-} 
-setTotal(); 
-}) 
-function setTotal(){ 
-var s=0; 
-$("#tab td").each(function(){ 
-s+=parseInt($(this).find('input[class*=text_box]').val())*parseFloat($(this).find('span[class*=price]').text()); 
-}); 
-$("#total").html(s.toFixed(2)); 
-} 
-setTotal(); 
 
-}) 
 </script> 
 </head> 
 <body> 
-<table id="tab"> 
-<tr> 
-<td> 
-<span>单价:</span><span class="price">1.50</span> 
-<input class="min" name="" type="button" value="-" /> 
-<input class="text_box" name="" type="text" value="1" /> 
-<input class="add" name="" type="button" value="+" /> 
-</td> 
-</tr> 
-<tr> 
-<td> 
-<span>单价:</span><span class="price">3.95</span> 
-<input class="min" name="" type="button" value="-" /> 
-<input class="text_box" name="" type="text" value="1" /> 
-<input class="add" name="" type="button" value="+" /> 
-</td> 
-</tr> 
-</table> 
 
-<p>总价：<label id="total"></label></p> 
+
+
+
+<div class="art-content-layout overview-table">
+	<div class="art-content-layout-row">
+		<c:forEach items="${ps}" var="p" varStatus="vs">
+			<div class="art-layout-cell">
+					<div class="overview-table-inner">
+						<h4>${p.name }</h4>
+						<img src="${pageContext.request.contextPath}${p.imgurl}" width="55px" height="55px" alt="an image" class="image" onclick="findDishById('${p.id}&dist=list')"/>
+						<p>价格: ￥${p.price }</p>
+						<p><a href="${pageContext.request.contextPath}/findDishById?id=${p.id}&dist=list">速速抢购</a></p>
+					</div>
+			</div>										
+			<c:if test="${vs.count%5==0}">
+		</div> <!-- 判断当前已经有5个商品了，这 一行结束，在重新开启一行 -->
+				<div class="art-content-layout-row">
+			</c:if>		
+		</c:forEach>
+													<!-- end cell -->
+	</div>
+												
+												
+</div> 
 </body> 
 </html>

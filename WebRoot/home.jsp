@@ -4,16 +4,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <head>
-<!--
-    Created by Artisteer v2.6.0.35446
-    Base template (without user's data) checked by http://validator.w3.org : "This page is valid XHTML 1.0 Transitional"
-    -->
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>快捷订餐</title>
 
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
-<!--[if IE 6]><link rel="stylesheet" href="style.ie6.css" type="text/css" media="screen" /><![endif]-->
-<!--[if IE 7]><link rel="stylesheet" href="style.ie7.css" type="text/css" media="screen" /><![endif]-->
+
 
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript">

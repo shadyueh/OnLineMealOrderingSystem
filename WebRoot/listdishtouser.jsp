@@ -7,6 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="Cache-Control" content="no-cache"/>
+<link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+<script type="text/javascript" src="script.js"></script>
 <script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 
@@ -14,93 +16,83 @@
 
 
 <body >
-
+<div align="center">
 	<c:if test="${empty pd}">
 无产品信息
 </c:if>
 	<c:if test="${not empty pd}">
-		<table border="1"  align="center" width="80%">
-			<tr>
-				<th align="left"><input type="checkbox"></th>
-				<th style="display:none">菜品编号</th>
-				<th >菜品名称</th>
-				<th >菜品价格</th>
-				<th >菜品余量</th>
-				<th >菜品描述</th>
-				<th >添加时间</th>
-				<th >最近修改时间</th>
-				<th >操作</th>
-			</tr>
-			<c:forEach items="${pd.dishs}" var="product">
-              <tr> 
-                <td width="2%"><img width="22" height="22" src="${pageContext.request.contextPath}${product.imgurl}"></img></td>
-				<td style="display:none">${product.id}</td>
-				<td width="14%" >${product.name}</td>
-				<td width="8%">${product.price}</td>
-				<td width="8%">${product.pnum}</td>
-				<td width="20%">${product.description}</td>
-				<td width="17%">${product.createtime}</td>
-				<td width="17%">${product.updatetime}</td>
-				<td width="20%">
-				<c:if test="${product.id ne null}">
-				&nbsp;<a href="${pageContext.request.contextPath}/findDishById?id=${product.id}&dist=edit">编辑</a>&nbsp;&nbsp;&nbsp;
-				<a href="javascript:void(0)" onclick="dele('${product.id}')">删除</a>&nbsp;&nbsp;&nbsp;
-				<c:if test="${product.state==0}">
-				<a href="javascript:void(0)"   onclick="updateState('${product.id}',1)">上架</a></c:if>
-				<c:if test="${product.state==1}">
-				<a href="javascript:void(0)"  onclick="updateState('${product.id}',0)">下架</a></c:if>
-				</c:if>
-				</td> 
-				</tr>
-            </c:forEach>
+	
+	<div class="cleared"></div>
+<div class="art-content-layout overview-table" align="center">
+	<div class="art-content-layout-row">
+		<c:forEach items="${pd.dishs}" var="product" varStatus="vs">
+			<div class="art-layout-cell">
+					<div class="overview-table-inner">
+						<h4>${product.name}</h4>
+						<img src="${pageContext.request.contextPath}${product.imgurl}" width="55px" height="55px" alt="an image" class="image" onclick="findDishById('${product.id}&dist=list')"/>
+						<p>价格: ￥${product.price }</p>
+						<p><a href="${pageContext.request.contextPath}/findDishById?id=${product.id}&dist=list">速速抢购</a></p>
+					</div>
+			</div>										
+			<c:if test="${vs.count%8==0}">
+				</div> <!-- 判断当前已经有5个商品了，这 一行结束，在重新开启一行 -->
+				<div class="art-content-layout-row">
+			</c:if>		
+		</c:forEach>
+	</div>
+	
+	
+		<div class="cleared"></div>
+		
+		<table border="1"  align="center" width="865px">
                    <tr>
-				<td colspan="9" align="center">
+				<td colspan="100" align="center">
 						
 						<c:if test="${pd.page==1}">
 							首页&nbsp;&nbsp;&nbsp;
 						</c:if>
 						 <c:if test="${pd.page!=1 and pd.paramkey=='null'}">
-							<a href="${pageContext.request.contextPath}/pageDishList?page=1&rows=${pd.rows}">首页</a>&nbsp;&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/listDishToUser?page=1&rows=${pd.rows}">首页</a>&nbsp;&nbsp;&nbsp;
 						</c:if>
 						<c:if test="${pd.page!=1 and pd.paramkey!='null'}">
-							<a href="${pageContext.request.contextPath}/pageDishList?page=1&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}">首页</a>&nbsp;&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/listDishToUser?page=1&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}">首页</a>&nbsp;&nbsp;&nbsp;
 						</c:if>
 						
 						<c:if test="${pd.page=='1'}">
 							上一页&nbsp;&nbsp;&nbsp;
 						</c:if> 
 						<c:if test="${pd.page!=1 and pd.paramkey=='null'}">
-							<a href="${pageContext.request.contextPath}/pageDishList?page=${pd.page-1 }&rows=${pd.rows}">上一页</a>&nbsp;&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/listDishToUser?page=${pd.page-1 }&rows=${pd.rows}">上一页</a>&nbsp;&nbsp;&nbsp;
 						</c:if> 
 						<c:if test="${pd.page!=1 and pd.paramkey!='null'}">
-							<a href="${pageContext.request.contextPath}/pageDishList?page=${pd.page-1 }&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}">上一页</a>&nbsp;&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/listDishToUser?page=${pd.page-1 }&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}">上一页</a>&nbsp;&nbsp;&nbsp;
 						</c:if> 
 						
 						<c:if test="${pd.page==pd.totalPage}">
 							下一页&nbsp;&nbsp;&nbsp;
 						</c:if> <c:if test="${pd.page!=pd.totalPage and pd.paramkey=='null'}">
-							<a href="${pageContext.request.contextPath}/pageDishList?page=${pd.page+1 }&rows=${pd.rows}">下一页</a>&nbsp;&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/listDishToUser?page=${pd.page+1 }&rows=${pd.rows}">下一页</a>&nbsp;&nbsp;&nbsp;
 						</c:if> 
 						<c:if test="${pd.page!=pd.totalPage and pd.paramkey!='null'}">
-							<a href="${pageContext.request.contextPath}/pageDishList?page=${pd.page+1 }&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}">下一页</a>&nbsp;&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/listDishToUser?page=${pd.page+1 }&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}">下一页</a>&nbsp;&nbsp;&nbsp;
 						</c:if>  
                        
                        <c:if test="${pd.page==pd.totalPage}">
 							尾页&nbsp;&nbsp;&nbsp;
 						</c:if> 
 						<c:if test="${pd.page!=pd.totalPage and pd.paramkey=='null'}">
-							<a href="${pageContext.request.contextPath}/pageDishList?page=${pd.totalPage}&rows=${pd.rows}">尾页</a>&nbsp;&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/listDishToUser?page=${pd.totalPage}&rows=${pd.rows}">尾页</a>&nbsp;&nbsp;&nbsp;
 						</c:if> 
 						<c:if test="${pd.page!=pd.totalPage and pd.paramkey!='null'}">
-							<a href="${pageContext.request.contextPath}/pageDishList?page=${pd.totalPage}&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}">尾页</a>&nbsp;&nbsp;&nbsp;
+							<a href="${pageContext.request.contextPath}/listDishToUser?page=${pd.totalPage}&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}">尾页</a>&nbsp;&nbsp;&nbsp;
 						</c:if> 
 					
 					<select name="currentPage"
 					onchange="changeCurrentPage(this.value);">
 						<option>--请选择每页条数--</option>
-						<option value="5">5</option>
-						<option value="10">10</option>
-						<option value="20">20</option>
+						<option value="16">16</option>
+						<option value="24">24</option>
+						<option value="32">32</option>
 				</select>
 				</td>
 
@@ -111,14 +103,14 @@
 						end="${pd.totalPage}" var="n" step="1">
 						<c:if test="${n==pd.page}">
 						<a
-							href="${pageContext.request.contextPath}/pageDishList?page=${n}&rows=${pd.rows}"><font
+							href="${pageContext.request.contextPath}/listDishToUser?page=${n}&rows=${pd.rows}"><font
 								color='red'>第${n}页</font> </a>&nbsp;&nbsp;
 							
 							</c:if>
 
 						<c:if test="${n!=pd.page}">
 							<a
-								href="${pageContext.request.contextPath}/pageDishList?page=${n}&rows=${pd.rows}">第${n}页</a>&nbsp;&nbsp;
+								href="${pageContext.request.contextPath}/listDishToUser?page=${n}&rows=${pd.rows}">第${n}页</a>&nbsp;&nbsp;
 					
 								</c:if>
 					</c:forEach>
@@ -129,14 +121,14 @@
 						end="${pd.totalPage}" var="n" step="1">
 						<c:if test="${n==pd.page}">
 						<a
-							href="${pageContext.request.contextPath}/pageDishList?page=${n}&rows=${pd.rows}&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}"><font
+							href="${pageContext.request.contextPath}/listDishToUser?page=${n}&rows=${pd.rows}&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}"><font
 								color='red'>第${n}页</font> </a>&nbsp;&nbsp;
 							
 							</c:if>
 
 						<c:if test="${n!=pd.page}">
 							<a
-								href="${pageContext.request.contextPath}/pageDishList?page=${n}&rows=${pd.rows}&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}">第${n}页</a>&nbsp;&nbsp;
+								href="${pageContext.request.contextPath}/listdishtouser?page=${n}&rows=${pd.rows}&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}">第${n}页</a>&nbsp;&nbsp;
 					
 								</c:if>
 					</c:forEach>
@@ -153,7 +145,6 @@
 				<button type="button" name="bt" id="bt" onclick="search()" >查询</button>
 				<select name="searchbycond" id="searchbycond" height="22"  onchange="changeCondtion(this.value)">
 						<option  width="60">--所有--</option>
-						<option value="state">按状态查询</option>
 						<option value="name">按名称查询</option>
 						<option value="price">按价格查询</option>
 						<option value="pnum">按余量查询</option>
@@ -167,96 +158,31 @@
 				<td colspan="9" align="center"><my:page pd="${pd}" />
 				</td>
 			</tr>
-		</table>
-
-       &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/addDish.jsp">添加商品</a> 
-        &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/backmanger.jsp">返回管理界面</a>
-        &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}">返回主界面</a>  
+			<tr>
+			<td>
+				&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/showCart">去购物车</a> 
+        		&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/backmanger.jsp">去结算</a>
+       			 &nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}">返回主界面</a>  
+				</td>
+			</tr>
+		</table>    
 	</c:if>
 
-
+</div>
 
 
 </body>
 <script type="text/javascript">
- function dele(idp){
- 
- var flag=window.confirm("确认删除吗？");
- if(flag){
- var parm={id:idp};
-$.ajax({
-type:"POST",
-async:false,
-headers:{"Content-Type":"application/x-www-form-urlencoded"},
-processData:false,
-cache:false,
-//dataType:'json',
-url:'${pageContext.request.contextPath}/deleteDishById',
-data:"id="+idp,
-success:function(result){
-alert("删除成功!");
-location.href="${pageContext.request.contextPath}/pageDishList?page=${pd.page}&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}"
-},
-error:function(){
-alert("异常，请检查！");
-window.close();
-}
-});
- 
-  }
-  
-  
-  
-  
- };
- 
- 
- 
-  function updateState(idp,state){
-   var content;
-  if (state==1){
-  content="上架"
-  }else {
-   content="下架"
-  }
 
- var flag=window.confirm("确认"+content+"吗？");
- if(flag){
- var parm={id:idp};
-$.ajax({
-type:"POST",
-async:false,
-headers:{"Content-Type":"application/x-www-form-urlencoded"},
-processData:false,
-cache:false,
-url:'${pageContext.request.contextPath}/updateDishState',
-data:"id="+idp+"&state="+state,
-success:function(result){
-alert(content+"成功!");
-location.href="${pageContext.request.contextPath}/pageDishList?page=${pd.page}&rows=${pd.rows}&paramkey=${pd.paramkey}&paramvalue=${pd.paramvalue}"
-},
-error:function(){
-alert("异常，请检查！");
-window.close();
-}
-});
- 
-  }
-  
-  
-  
-  
- };
  function changeCurrentPage(value) {
 
-		location.href = "${pageContext.request.contextPath}/pageDishList?rows="+ value;
+		location.href = "${pageContext.request.contextPath}/listDishToUser?rows="+ value;
 	};
 	var arr=[];
-	arr[0] = new Array("state","已上架","已下架");
-	arr[1] = new Array("name");
-	arr[2] = new Array("price","0~5","5~10","10~15","15~25","25~40","40~60","60~85","85~115","115~999");
-	arr[3] = new Array("pnum","0~5","5~10","10~25","25~40","40~999");
-	arr[4] = new Array("category","酒水","饮料","荤菜","素菜","海鲜","野味","其它");
+	arr[0] = new Array("name");
+	arr[1] = new Array("price","0~5","5~10","10~15","15~25","25~40","40~60","60~85","85~115","115~999");
+	arr[2] = new Array("pnum","0~5","5~10","10~25","25~40","40~999");
+	arr[3] = new Array("category","酒水","饮料","荤菜","素菜","海鲜","野味","其它");
  function changeCondtion(value){
  //alert(value);
  	var select2 = document.getElementById("select2");
@@ -350,9 +276,9 @@ var select2 = document.getElementById("condtion");
 					}
 					alert("paramkey="+paramkey+";paramvalue="+paramvalue);
 					if(paramkey=="null"&&paramvalue=="null"){
-					location.href = "${pageContext.request.contextPath}/pageDishList?rows="+${pd.rows};
+					location.href = "${pageContext.request.contextPath}/listDishToUser?rows="+${pd.rows};
 					}else{
-					location.href = "${pageContext.request.contextPath}/pageDishList?rows="+${pd.rows}+"&paramkey="+paramkey+"&paramvalue="+paramvalue;
+					location.href = "${pageContext.request.contextPath}/listDishToUser?rows="+${pd.rows}+"&paramkey="+paramkey+"&paramvalue="+paramvalue;
 					}
 					
 }
@@ -382,10 +308,9 @@ name.style.display="none";
 select2.style.display="inline";
 
 var arr=[];
-	arr[0] = new Array("state","已上架","已下架");
-	arr[1] = new Array("price","0~5","5~10","10~15","15~25","25~40","40~60","60~85","85~115","115~999");
-	arr[2] = new Array("pnum","0~5","5~10","10~25","25~40","40~999");
-	arr[3] = new Array("category","酒水","饮料","荤菜","素菜","海鲜","野味","其它");
+	arr[0] = new Array("price","0~5","5~10","10~15","15~25","25~40","40~60","60~85","85~115","115~999");
+	arr[1] = new Array("pnum","0~5","5~10","10~25","25~40","40~999");
+	arr[2] = new Array("category","酒水","饮料","荤菜","素菜","海鲜","野味","其它");
 	for(var i=0;i<arr.length;i++){
 	if(key==arr[i][0]){
 	var inarr=arr[i];

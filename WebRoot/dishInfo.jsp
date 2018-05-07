@@ -62,17 +62,22 @@ setTotal();
 }) 
 
 function goon(){
-location.href=document.referrer;
+
+if(document.referrer.includes("showCart")){
+
+location.href="${pageContext.request.contextPath}/listDishToUser"
+}else{location.href=document.referrer;}
+
 }
 </script>
 </head>
 
 <body>
 
-	<table border="1" align="center" >
+	<table border="1" align="center"  width="400px" height="200px">
 		<tr>
 			<td rowspan="5"><img
-			width="150px" height="150px"
+			width="220px" height="300px"
 				src="${pageContext.request.contextPath}${p.imgurl}"></img>
 			</td>
 			<td>商品名称:${p.name }</td>
@@ -101,16 +106,16 @@ location.href=document.referrer;
 		<input class="add" name="" type="button" value="+" /> 
 		</td> 
 	
-			<td colspan="2" align="right">
+			<td colspan="2" align="center">
 			<img src="${pageContext.request.contextPath}/images/buy.bmp" onclick="addDishToCart()">
 			</td>
 		</tr>
 		<tr>
 		<td colspan="2">
-				<c:if test="${!empty sessionScope.cart}">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="goon()">继续选订</a></c:if>
-				<c:if test="${!empty sessionScope.cart}">
-				&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/showCart">查看购物车</a></c:if>
+				
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="goon()">继续选订</a>
+
+				&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/showCart">查看购物车</a>
 <c:if test="${!empty sessionScope.cart}">
 				&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="updateState('${product.id}',1)">去结算</a></c:if>
 			</td>
