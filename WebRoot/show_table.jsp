@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <table class="easyui-datagrid" id="itemList" title="商品列表" 
-       data-options="singleSelect:false,collapsible:true,pagination:true,url:'${pageContext.request.contextPath}/listTable',method:'get',pageSize:30,toolbar:toolbar">
+       data-options="singleSelect:false,collapsible:true,pagination:true,url:'${pageContext.request.contextPath}/listTableToUser',method:'get',pageSize:30,toolbar:toolbar">
     <thead>
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
-  
+   			<th data-options="field:'imgurl',width:120,align:'center'">餐桌编号</th>
             <th data-options="field:'name',width:120,align:'center'">餐桌编号</th>
             <th data-options="field:'location',width:150 ,align:'center'">餐桌位置</th>
             <th data-options="field:'capacity',width:120 ,align:'center'">餐桌容量</th>
-            <th data-options="field:'state',width:60,align:'center',formatter:TAOTAO.formatItemStatus">状态</th>
-            <th data-options="field:'begintime',width:170,align:'center',formatter:TAOTAO.formatDateTime">占用起始时间</th>
-              <th data-options="field:'endtime',width:170,align:'center',formatter:TAOTAO.formatDateTime">占用结束时间</th>
-            <th data-options="field:'updatetime',width:170,align:'center',formatter:TAOTAO.formatDateTime">更新日期</th>
               <th data-options="field:'description',width:180 ,align:'center'">餐桌描述</th>
         </tr>
     </thead>

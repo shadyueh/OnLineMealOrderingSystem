@@ -32,7 +32,11 @@ var TT = TAOTAO = {
 	// 格式化时间
 	formatDateTime : function(val,row){
 		var now = new Date(val);
-    	return now.format("yyyy-MM-dd hh:mm:ss");
+
+		if(now == "Invalid Date"){
+			return"-";
+		}else{
+    	return now.format("yyyy-MM-dd hh:mm:ss");}
 	},
 	// 格式化连接
 	formatUrl : function(val,row){
@@ -50,9 +54,9 @@ var TT = TAOTAO = {
         if (val == 1){
             return '正常';
         } else if(val == 2){
-        	return '<span style="color:red;">下架</span>';
+        	return '<span style="color:red;">维修</span>';
         } else {
-        	return '未知';
+        	return '占用';
         }
     },
     

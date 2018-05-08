@@ -1,5 +1,6 @@
 package com.wangyanci.pojo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class Table {
@@ -22,6 +23,15 @@ public class Table {
 	private String imgurl;
 
 	private String description;
+	private Timestamp updatetime;
+
+	public Timestamp getUpdatetime() {
+		return updatetime;
+	}
+
+	public void setUpdatetime(Timestamp updatetime) {
+		this.updatetime = updatetime;
+	}
 
 	public String getId() {
 		return id;

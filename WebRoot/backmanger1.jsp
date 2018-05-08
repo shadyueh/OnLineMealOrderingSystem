@@ -25,7 +25,7 @@
          		<ul>
 	         		<li data-options="attributes:{'url':'table_add.jsp'}">新增餐桌</li>
 	         		<li data-options="attributes:{'url':'table_list.jsp'}">查询餐桌</li>
-	         		<li data-options="attributes:{'url':'item-param-list'}">规格参数</li>
+
 	         	</ul>
          	</li>
          	<li>

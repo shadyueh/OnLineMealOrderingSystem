@@ -14,6 +14,16 @@ public class Cart {
 		return map;
 	}
 
+	private Map<String, CartTable> Tmap = new HashMap<String, CartTable>();
+
+	public Map<String, CartTable> getTmap() {
+		return Tmap;
+	}
+
+	public void setTmap(Map<String, CartTable> tmap) {
+		Tmap = tmap;
+	}
+
 	public void setMap(Map<String, CartDish> map) {
 		this.map = map;
 	}
