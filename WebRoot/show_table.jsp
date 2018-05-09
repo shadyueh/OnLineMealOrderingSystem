@@ -1,19 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table class="easyui-datagrid" id="itemList" title="商品列表" 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>后台管理系统</title>
+
+<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="css/taotao.css" />
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+</head>
+<body >
+<table class="easyui-datagrid" id="itemList" title="餐桌列表" 
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'${pageContext.request.contextPath}/listTableToUser',method:'get',pageSize:30,toolbar:toolbar">
     <thead>
         <tr>
         	<th data-options="field:'ck',checkbox:true"></th>
-   			<th data-options="field:'imgurl',width:120,align:'center'">餐桌编号</th>
+   			
             <th data-options="field:'name',width:120,align:'center'">餐桌编号</th>
             <th data-options="field:'location',width:150 ,align:'center'">餐桌位置</th>
             <th data-options="field:'capacity',width:120 ,align:'center'">餐桌容量</th>
               <th data-options="field:'description',width:180 ,align:'center'">餐桌描述</th>
         </tr>
     </thead>
+
 </table>
-<div id="itemEditWindow" class="easyui-window" title="编辑商品" data-options="modal:true,closed:true,iconCls:'icon-save',href:'${pageContext.request.contextPath}/table_edit.jsp'" style="width:80%;height:80%;padding:10px;">
+<div>
+    <a >起始時間:</a> 
+<input id="dt" class="easyui-datetimebox" name="birthday1"     
+        data-options="required:true,showSeconds:true" value="3/4/2010 2/3" style="width:150px">   
+<a>結束時間:</a> 
+
+<input id="db" class="easyui-datetimebox" name="birthday2"     
+        data-options="required:true,showSeconds:true" value="3/4/2010 2/3" style="width:150px">  
+    <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'"></a> 
 </div>
+</body>
 <script>
 
     function getSelectionsIds(){
@@ -27,6 +52,51 @@
     	return ids;
     }
     
+    
+    
+      $(function(){    
+    $('#btn').bind('click', function(){    
+       var starttime =$('#dt').datetimebox('getValue'); 
+        var endtime =$('#db').datetimebox('getValue'); 
+        alert(starttime);
+         alert(endtime);
+         
+         	var ids = getSelectionsIds();
+         	if(starttime == "2018-05-09 02:03"&&endtime=="2018-05-09 02:03"){
+        		$.messager.alert('提示','未选定時間!');
+        		return ;
+        	}
+        	if(ids.length == 0){
+        		$.messager.alert('提示','未选中商品!');
+        		return ;
+        	}
+        	
+        	
+        	$.messager.confirm('确认','确定选定餐桌吗？',function(r){
+        
+        	    if (r){
+        	    	var params = {"ids":ids,"stime":starttime,"etime":endtime};
+        	    	
+        	    		$.post("${pageContext.request.contextPath}/sureTable",params, function(data){
+            			if(data == "ok"){
+            				$.messager.alert('提示','选定成功!',undefined,function(){
+            				alert("ok")
+            					location.href="${pageContext.request.contextPath}/showOrder";
+            				});
+            			}
+            		});
+        	    }
+      
+    });    
+});
+});
+    
+   
+   
+   
+   
+   
+   
     var toolbar = [{
         text:'新增',
         iconCls:'icon-add',
@@ -34,49 +104,7 @@
         	$(".tree-title:contains('新增餐桌')").parent().click();
         }
     },{
-        text:'编辑',
-        iconCls:'icon-edit',
-        handler:function(){
-        	var ids = getSelectionsIds();
-        	if(ids.length == 0){
-        		$.messager.alert('提示','必须选择一个商品才能编辑!');
-        		return ;
-        	}
-        	if(ids.indexOf(',') > 0){
-        		$.messager.alert('提示','只能选择一个商品!');
-        		return ;
-        	}
-        	
-        	$("#itemEditWindow").window({
-        		onLoad :function(){
-        			//回显数据
-        			var data = $("#itemList").datagrid("getSelections")[0];
-        			alert(data)
-        			//data.priceView = TAOTAO.formatPrice(data.price);
-        			$("#itemeEditForm").form("load",data);
-        			itemEditEditor.html(data.description);
-        			$("#cc").combobox("setValue",data.category);
-
-;
-        		
-        			
-        			//加载商品规格
-        			$.getJSON('',function(_data){
-        	
-        			});
-        			
-        			TAOTAO.init({
-        				"pics" : data.imgurl,
-        				"cid" : data.category,
-        				fun:function(node){
-        					TAOTAO.changeItemParam(node, "itemeEditForm");
-        				}
-        			});
-        		}
-        	}).window("open");
-        }
-    },{
-        text:'删除',
+        text:'选定',
         iconCls:'icon-cancel',
         handler:function(){
         	var ids = getSelectionsIds();
@@ -84,62 +112,28 @@
         		$.messager.alert('提示','未选中商品!');
         		return ;
         	}
-        	$.messager.confirm('确认','确定删除商品吗？',function(r){
+        	$.messager.confirm('确认','确定选定餐桌吗？',function(r){
+        
         	    if (r){
-        	    	var params = {"ids":ids};
-                	$.post("${pageContext.request.contextPath}/deleteTable",params, function(data){
+        	    $("#itemEditWindow").window('open');
+
+        	    
+        	    	var params = {"ids":ids,"stime":dt};
+    
+                	$.post("${pageContext.request.contextPath}/sureTable",params, function(data){
             			if(data == "ok"){
-            				$.messager.alert('提示','删除商品成功!',undefined,function(){
-            					$("#itemList").datagrid("reload");
+            				$.messager.alert('提示','选定成功!',undefined,function(){
+            				alert("ok")
+            					//location.href=${pageContext.request.contextPath}/showOrder;
             				});
             			}
             		});
         	    }
         	});
         }
-    },'-',{
-        text:'下架',
-        iconCls:'icon-remove',
-        handler:function(){
-        	var ids = getSelectionsIds();
-        	if(ids.length == 0){
-        		$.messager.alert('提示','未选中商品!');
-        		return ;
-        	}
-        	$.messager.confirm('确认','确定下架商品吗？',function(r){
-        	    if (r){
-        	    	var params = {"ids":ids,"state":2};
-                	$.post("${pageContext.request.contextPath}/changStateTable",params, function(data){
-            			if(data == "ok"){
-            				$.messager.alert('提示','下架商品成功!',undefined,function(){
-            					$("#itemList").datagrid("reload");
-            				});
-            			}
-            		});
-        	    }
-        	});
-        }
-    },{
-        text:'上架',
-        iconCls:'icon-remove',
-        handler:function(){
-        	var ids = getSelectionsIds();
-        	if(ids.length == 0){
-        		$.messager.alert('提示','未选中商品!');
-        		return ;
-        	}
-        	$.messager.confirm('确认','确定上架商品吗？',function(r){
-        	    if (r){
-        	    	var params = {"ids":ids,"state":1};
-                	$.post("${pageContext.request.contextPath}/changStateTable",params, function(data){
-            			if(data == "ok"){
-            				$.messager.alert('提示','上架商品成功!',undefined,function(){
-            					$("#itemList").datagrid("reload");
-            				});
-            			}
-            		});
-        	    }
-        	});
-        }
-    }];
+    },'-'
+    ];
 </script>
+
+
+</html>

@@ -271,4 +271,14 @@
     <servlet-name>ListTableToUser</servlet-name>
     <url-pattern>/listTableToUser</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SureTable</display-name>
+    <servlet-name>SureTable</servlet-name>
+    <servlet-class>com.wangyanci.servlet.SureTable</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SureTable</servlet-name>
+    <url-pattern>/sureTable</url-pattern>
+  </servlet-mapping>
 </web-app>

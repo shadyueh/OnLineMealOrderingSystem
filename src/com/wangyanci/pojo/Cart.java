@@ -7,6 +7,7 @@ public class Cart {
 	// 购物车存放多个购物项:
 	// Map集合用商品的ID作为Map的key , 购物项作为Map的value
 	private Map<String, CartDish> map = new HashMap<String, CartDish>();
+	private Map<String, Table> tmap = new HashMap<String, Table>();
 	// 总计:
 	private Double total = 0.0;
 
@@ -14,14 +15,12 @@ public class Cart {
 		return map;
 	}
 
-	private Map<String, CartTable> Tmap = new HashMap<String, CartTable>();
-
-	public Map<String, CartTable> getTmap() {
-		return Tmap;
+	public Map<String, Table> getTmap() {
+		return tmap;
 	}
 
-	public void setTmap(Map<String, CartTable> tmap) {
-		Tmap = tmap;
+	public void setTmap(Map<String, Table> tmap) {
+		tmap = tmap;
 	}
 
 	public void setMap(Map<String, CartDish> map) {

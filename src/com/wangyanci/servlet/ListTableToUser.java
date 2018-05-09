@@ -25,23 +25,27 @@ public class ListTableToUser extends HttpServlet {
 		super();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Map<String, String[]> map = request.getParameterMap();
 		int page = Integer.parseInt(request.getParameter("page"));
 		int rows = Integer.parseInt(request.getParameter("rows"));
-		map.remove("page");
-		map.remove("rows");
+		// map.remove("page");
+		// map.remove("rows");
 		Table tb = new Table();
 		TableService service;
 		try {
 			BeanUtils.populate(tb, map);
+			// tb.setBegintime(new Date(2017, 12, 12, 12, 13, 15));
+			// tb.setEndtime(new Date(2019, 1, 1, 1, 1, 1));
 			service = new TableServiceImpl();
 			TablePageListResult result = service.findTableBycontion(tb, page, rows);
 			Gson gson = new Gson();
 			String string = gson.toJson(result);
-			response.setContentType("text/html;charset=UTF-8");
+			System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^" + string);
+			response.setContentType("text/json;charset=UTF-8");
 			response.getWriter().write(string);
 
 		} catch (IllegalAccessException e) {

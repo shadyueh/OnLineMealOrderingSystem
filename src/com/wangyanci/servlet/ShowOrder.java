@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wangyanci.pojo.Cart;
-import com.wangyanci.pojo.CartTable;
+import com.wangyanci.pojo.Table;
 
 public class ShowOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,15 +22,17 @@ public class ShowOrder extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		Map<String, CartTable> tablemap = cart.getTmap();
-		System.out.println("----------------------------------");
-		if (tablemap.keySet().size() == 0) {
-			request.getRequestDispatcher("/show_table.jsp").forward(request, response);
+		if (cart != null) {
+			Map<String, Table> tablemap = cart.getTmap();
+			System.out.println("----------------------------------");
+			if (tablemap.keySet().size() == 0) {
+				request.getRequestDispatcher("/show_table.jsp").forward(request, response);
 
-		} else {
+			} else {
 
-			request.getRequestDispatcher("/show_order.jsp").forward(request, response);
+				request.getRequestDispatcher("/show_order.jsp").forward(request, response);
 
+			}
 		}
 
 	}

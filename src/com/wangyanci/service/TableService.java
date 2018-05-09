@@ -1,6 +1,7 @@
 package com.wangyanci.service;
 
 import java.sql.SQLException;
+import java.util.Date;
 
 import com.wangyanci.pojo.Table;
 import com.wangyanci.pojo.TablePageListResult;
@@ -20,5 +21,7 @@ public interface TableService {
 	void changeStateTable(String string, int state) throws SQLException;
 
 	TablePageListResult findTableBycontion(Table tb, int page, int rows) throws SQLException;
+
+	void sureTable(String[] strs, Date stime, Date etime) throws SQLException;
 
 }

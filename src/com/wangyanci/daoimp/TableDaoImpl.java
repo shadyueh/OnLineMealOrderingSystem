@@ -3,6 +3,7 @@ package com.wangyanci.daoimp;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
@@ -73,51 +74,100 @@ public class TableDaoImpl implements TableDao {
 	}
 
 	public List<Table> findTableByCondtion(Table tb, int page, int rows) throws SQLException {
-		String string = "select * from tab where state =1 and (begintime<? or endtime>?";
+		String string = "select * from tab where state =1 ";
 		List<Object> paramList = new ArrayList<Object>();
-		if (tb.getCapacity() != null) {
-			string += " and capacity=?";
-			paramList.add(tb.getCapacity());
+		if (tb == null) {
+			System.out.println("***********tb.getBeginTime" + tb.getBegintime().toString());
+			System.out.println("***********tb.getEndTime" + tb.getEndtime().toString());
+			if (tb.getBegintime().toString() != "" && tb.getEndtime().toString() != "") {
+
+				string += " and (begintime<? or endtime>?";
+				paramList.add(tb.getBegintime());
+				paramList.add(tb.getEndtime());
+
+			} else {
+				string += " and begintime is null and endtime is null";
+			}
+			if (tb.getCapacity() != null) {
+				string += " and capacity=?";
+				paramList.add(tb.getCapacity());
+			}
+			if (tb.getCategory() != null) {
+				string += " and capacity=?";
+				paramList.add(tb.getCategory());
+			}
+			if (tb.getLocation() != null) {
+				string += " and location=?";
+				paramList.add(tb.getLocation());
+			}
+			if (tb.getName() != null) {
+				string += " and name=?";
+				paramList.add(tb.getName());
+			}
+
+			QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+			return runner.query(string, paramList, new BeanListHandler<Table>(Table.class));
+		} else {
+			string += " and begintime is null and endtime is null";
+
+			QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+			return runner.query(string, new BeanListHandler<Table>(Table.class));
 		}
-		if (tb.getCategory() != null) {
-			string += " and capacity=?";
-			paramList.add(tb.getCategory());
-		}
-		if (tb.getLocation() != null) {
-			string += " and location=?";
-			paramList.add(tb.getLocation());
-		}
-		if (tb.getName() != null) {
-			string += " and name=?";
-			paramList.add(tb.getName());
-		}
-		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
-		return runner.query(string, paramList, new BeanListHandler<Table>(Table.class));
+
 	}
 
 	public int getCountBycondtion(Table tb) throws SQLException {
-		String string = "select count(*) from tab where state =1 and (begintime<? or endtime>?";
+		String string = "select count(*) from tab where state =1 ";
 		List<Object> paramList = new ArrayList<Object>();
-		if (tb.getCapacity() != null) {
-			string += " and capacity=?";
-			paramList.add(tb.getCapacity());
+		if (tb == null) {
+			System.out.println("***********tb.getBeginTime" + tb.getBegintime().toString());
+			System.out.println("***********tb.getEndTime" + tb.getEndtime().toString());
+			if (tb.getBegintime().toString() != "" && tb.getEndtime().toString() != "") {
+
+				string += " and (begintime<? or endtime>?";
+				paramList.add(tb.getBegintime());
+				paramList.add(tb.getEndtime());
+
+			} else {
+				string += " and begintime is null and endtime is null";
+			}
+
+			if (tb.getCapacity() != null) {
+				string += " and capacity=?";
+				paramList.add(tb.getCapacity());
+			}
+			if (tb.getCategory() != null) {
+				string += " and capacity=?";
+				paramList.add(tb.getCategory());
+			}
+			if (tb.getLocation() != null) {
+				string += " and location=?";
+				paramList.add(tb.getLocation());
+			}
+			if (tb.getName() != null) {
+				string += " and name=?";
+				paramList.add(tb.getName());
+			}
+
+			QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+			@SuppressWarnings("deprecation")
+			long count = (Long) runner.query(string, paramList, new ScalarHandler());
+			return (int) count;
+		} else {
+			string += " and begintime is null and endtime is null";
+			QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+			@SuppressWarnings("deprecation")
+			long count = (Long) runner.query(string, new ScalarHandler());
+			return (int) count;
 		}
-		if (tb.getCategory() != null) {
-			string += " and capacity=?";
-			paramList.add(tb.getCategory());
-		}
-		if (tb.getLocation() != null) {
-			string += " and location=?";
-			paramList.add(tb.getLocation());
-		}
-		if (tb.getName() != null) {
-			string += " and name=?";
-			paramList.add(tb.getName());
-		}
+
+	}
+
+	public void sureTable(String id, Date stime, Date etime) throws SQLException {
+
+		String sql = "update tab set state=3,begintime=?,endtime=? where id=?";
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
-		@SuppressWarnings("deprecation")
-		long count = (Long) runner.query(string, paramList, new ScalarHandler());
-		return (int) count;
+		runner.update(sql, stime, etime, id);
 	}
 
 }

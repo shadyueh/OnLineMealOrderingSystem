@@ -1,6 +1,7 @@
 package com.wangyanci.serviceimp;
 
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import com.wangyanci.dao.TableDao;
@@ -59,6 +60,14 @@ public class TableServiceImpl implements TableService {
 		result.setRows(list);
 		result.setTotal(count);
 		return result;
+	}
+
+	public void sureTable(String[] strs, Date stime, Date etime) throws SQLException {
+		TableDao dao = new TableDaoImpl();
+		for (String id : strs) {
+			dao.sureTable(id, stime, etime);
+		}
+
 	}
 
 }
