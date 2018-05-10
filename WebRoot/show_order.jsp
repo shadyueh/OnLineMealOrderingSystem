@@ -209,8 +209,10 @@ location.href=document.referrer;
 
 		
 	</table>
-	<a>支付</a> 
-	<a>稍後支付</a> 
+	<div align="center">
+	<a href="${pageContext.request.contextPath}/payForOrder">支付</a> 
+	<a href="${pageContext.request.contextPath}/payForOrder">稍後支付</a> 
+	</div>
 	</c:if>
 			
 			</body>

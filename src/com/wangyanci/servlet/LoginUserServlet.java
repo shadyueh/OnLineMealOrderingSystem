@@ -77,7 +77,7 @@ public class LoginUserServlet extends HttpServlet {
 
 			request.getSession().setAttribute("user", user);// 登录成功，将user存储到session中.
 
-			response.sendRedirect("http://www.estore.com"); // 重定向可以跳转到任意路径,请求转发只能在本站内跳转.
+			request.getRequestDispatcher("/home.jsp").forward(request, response); // 重定向可以跳转到任意路径,请求转发只能在本站内跳转.
 			return;
 
 		} catch (LoginException e) {

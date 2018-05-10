@@ -281,4 +281,14 @@
     <servlet-name>SureTable</servlet-name>
     <url-pattern>/sureTable</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PayForOrder</display-name>
+    <servlet-name>PayForOrder</servlet-name>
+    <servlet-class>com.wangyanci.servlet.PayForOrder</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PayForOrder</servlet-name>
+    <url-pattern>/payForOrder</url-pattern>
+  </servlet-mapping>
 </web-app>
