@@ -24,21 +24,23 @@
          		<span>餐桌管理</span>
          		<ul>
 	         		<li data-options="attributes:{'url':'table_add.jsp'}">新增餐桌</li>
-	         		<li data-options="attributes:{'url':'table_list.jsp'}">查询餐桌</li>
+	         		<li data-options="attributes:{'url':'table_list.jsp'}">管理餐桌</li>
 
 	         	</ul>
          	</li>
          	<li>
-         		<span>网站内容管理</span>
+         		<span>订单管理</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'content-category'}">内容分类管理</li>
-	         		<li data-options="attributes:{'url':'content'}">内容管理</li>
+	         		<li data-options="attributes:{'url':'order_list.jsp'}">查看订单</li>
+	         		<li data-options="attributes:{'url':'content-category'}">管理订单</li>
+	  
 	         	</ul>
          	</li>
          	<li>
-         		<span>索引库管理</span>
+         		<span>用户管理</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'import-index'}">导入索引库</li>
+	         		<li data-options="attributes:{'url':'import-index'}">查看用户</li>
+	         		<li data-options="attributes:{'url':'import-index'}">管理用户</li>
 	         	</ul>
          	</li>
          </ul>

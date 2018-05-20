@@ -28,6 +28,7 @@ public class SureTable extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		String str = request.getParameter("ids");
 		String[] strs = str.split(",");
 

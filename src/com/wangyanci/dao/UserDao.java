@@ -12,4 +12,6 @@ public interface UserDao {
 	public User findUserByActiveCode(String activeCode) throws SQLException;
 
 	public void activeUser(String activeCode) throws SQLException;
+
+	public User findUserById(int id) throws SQLException;
 }

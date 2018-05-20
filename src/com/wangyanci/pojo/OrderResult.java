@@ -2,14 +2,9 @@ package com.wangyanci.pojo;
 
 import java.util.Date;
 
-public class Orders {
-	@Override
-	public String toString() {
-		return "Orders [id=" + id + ", money=" + money + ", receiverinfo=" + receiverinfo + ", paystate=" + paystate
-				+ ", ordertime=" + ordertime + ", userId=" + user_id + "]";
-	}
+public class OrderResult {
 
-	private String id;
+	private String orderid;
 
 	private Double money;
 
@@ -20,13 +15,15 @@ public class Orders {
 	private Date ordertime;
 
 	private Integer user_id;
+	private String username; // 用户名
+	private String nickname; // 昵称
 
-	public String getId() {
-		return id;
+	public String getOrderid() {
+		return orderid;
 	}
 
-	public void setId(String id) {
-		this.id = id == null ? null : id.trim();
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
 	}
 
 	public Double getMoney() {
@@ -42,7 +39,7 @@ public class Orders {
 	}
 
 	public void setReceiverinfo(String receiverinfo) {
-		this.receiverinfo = receiverinfo == null ? null : receiverinfo.trim();
+		this.receiverinfo = receiverinfo;
 	}
 
 	public Integer getPaystate() {
@@ -67,6 +64,22 @@ public class Orders {
 
 	public void setUser_id(Integer user_id) {
 		this.user_id = user_id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 }

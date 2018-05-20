@@ -4,6 +4,13 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class Table {
+	@Override
+	public String toString() {
+		return "Table [id=" + id + ", name=" + name + ", begintime=" + begintime + ", endtime=" + endtime + ", state="
+				+ state + ", capacity=" + capacity + ", location=" + location + ", category=" + category + ", imgurl="
+				+ imgurl + ", description=" + description + ", updatetime=" + updatetime + "]";
+	}
+
 	private String id;
 
 	private String name;

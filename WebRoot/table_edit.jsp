@@ -56,7 +56,7 @@
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a>
 	</div>
 </div>
-<script type="text/javascript">
+
 	var itemEditEditor ;
 	$(function(){
 		//实例化编辑器
@@ -80,7 +80,7 @@
 		
 		$.post("${pageContext.request.contextPath}/editTable",$("#itemeEditForm").serialize(), function(data){
 			if(data == '{"status":200}'){
-				$.messager.alert('提示','修改商品成功!','info',function(){
+				$.messager.alert('提示','修改餐桌信息成功!','info',function(){
 					$("#itemEditWindow").window('close');
 					$("#itemList").datagrid("reload");
 				});

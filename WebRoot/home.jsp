@@ -233,8 +233,10 @@
 														class="r"></span><span class="t">管理菜品</span> </a></li>
 												<li><a href="${pageContext.request.contextPath}/showCart"><span class="l"></span><span
 														class="r"></span><span class="t">查看购物车</span> </a></li>
-												<li><a href="${pageContext.request.contextPath}/showOrder"><span class="l"></span><span
-														class="r"></span><span class="t">查看订单</span> </a></li>
+												<li><a href="${pageContext.request.contextPath}/showNoPayOrder"><span class="l"></span><span
+														class="r"></span><span class="t">查看未支付订单</span> </a></li>
+												<li><a href="${pageContext.request.contextPath}/showPayOrder"><span class="l"></span><span
+														class="r"></span><span class="t">查看往期订单</span> </a></li>
 												<li><a href="${pageContext.request.contextPath}/download"><span class="l"></span><span
 														class="r"></span><span class="t">下载榜单</span> </a></li>
 												<li><a href="page.html?i8"><span class="l"></span><span

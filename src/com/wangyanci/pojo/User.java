@@ -6,6 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class User implements Serializable {
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", nickname=" + nickname
+				+ ", email=" + email + ", role=" + role + ", activestate=" + activestate + ", activecode=" + activecode
+				+ ", registtime=" + registtime + "]";
+	}
+
 	private int id; // 用户编号
 	private String username; // 用户名
 	private String password; // 密码

@@ -49,4 +49,10 @@ public class UserDaoImp implements UserDao {
 
 	}
 
+	public User findUserById(int id) throws SQLException {
+		String sql = "select * from user where id=?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		return runner.query(sql, new BeanHandler<User>(User.class), id);
+	}
+
 }

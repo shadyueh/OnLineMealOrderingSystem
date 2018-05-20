@@ -9,9 +9,9 @@
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 <script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
 <script type="text/javascript">
- function dele(idp){
+ function pay(idp){
  
- var flag=window.confirm("确认移除吗？");
+ var flag=window.confirm("确认支付吗？");
  if(flag){
 $.ajax({
 type:"POST",
@@ -20,11 +20,11 @@ headers:{"Content-Type":"application/x-www-form-urlencoded"},
 processData:false,
 cache:false,
 //dataType:'json',
-url:'${pageContext.request.contextPath}/deleteDishFromCart',
-data:"id="+idp,
+url:'${pageContext.request.contextPath}/payOrder',
+data:"orderid="+idp,
 success:function(result){
-alert("移除成功!");
-location.href="${pageContext.request.contextPath}/showcart.jsp";
+alert("支付成功!");
+location.href="${pageContext.request.contextPath}";
 },
 error:function(){
 alert("异常，请检查！");
@@ -127,16 +127,7 @@ location.href=document.referrer;
 </head>
 
 <body>
-<c:if test="${cart.total==0.0}">
 
- <div  align="center" style="margin:0 auto;top:100px;bottom:100px">
- 				<font>你的购物车还是空的，赶快去预定吧！</font>	</div>	
- 				 <div  align="center">															
-	      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}">回到首页</a>
-	       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="goon()">继续选购</a>
-	       </div></c:if>
-
-<c:if test="${cart.total!=0.0}">
 	<table border="1" align="center" >
 		<tr>
 				<th align="left"><input type="checkbox"></th>
@@ -148,7 +139,7 @@ location.href=document.referrer;
 				<th >选订数量</th>
 				<th >操作</th>
 		</tr>
-		<c:forEach items="${cart.map}" var="entry1">
+		<c:forEach items="${orderInfo.dishinfo_map}" var="entry1">
               <tr> 
              	<td width="50px"><img width="50px" height="50px" src="${pageContext.request.contextPath}${entry1.value.dish.imgurl}"></img></td>
 				<td style="display:none">${entry1.value.dish.id}</td>
@@ -168,25 +159,10 @@ location.href=document.referrer;
            </c:forEach>
              <tr>
 	       <td colspan="7" align="center">
-			 <p style="text-align:center">总价：<label id="total" >${cart.total}</label></p> 
+			 <p style="text-align:center">总价：<label id="total" >${dishinfo_map.total}</label></p> 
 	       </td>
-	       </tr>
-	       <tr>
-	       <td colspan="7" align="center">
-	      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}">回到首页</a>
-	      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="javascript:void(0)" onclick="deleteall( )">清空购物车</a>
-	       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="goon()">继续选购</a>
-	       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/showOrder">结算</a>
-	       
-	       </td>
-	       
-	       </tr>
-		
-	</table>
-	
-	
-	
-	<table border="1" align="center" width="50%" >
+	       </tr></table>
+	       <table border="1" align="center" width="50%" >
 		<tr>
 				<th align="left"><input type="checkbox"></th>
 				<th style="display:none">菜品编号</th>
@@ -195,7 +171,7 @@ location.href=document.referrer;
 				<th >餐桌容量</th>
 				<th >操作</th>
 		</tr>
-		<c:forEach items="${cart.tmap}" var="entry">
+		<c:forEach items="${orderInfo.tab_map}" var="entry">
               <tr> 
              	<td width="50px"><img width="50px" height="50px" src="${entry.value.imgurl}"></img></td>
 				<td style="display:none">${entry.value.id}</td>
@@ -205,15 +181,18 @@ location.href=document.referrer;
 				<td><a href="javascript:void(0)" onclick="dele('${entry1.value.id}')">移除</a></td>
 				</tr>
            </c:forEach>
-
-
-		
-	</table>
+	       <tr>
+	       <td colspan="7" align="center">
+	      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}">回到首页</a>
+	       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="goon()">继续选购</a>
+	       
+	       </td>
+	        </tr></table>
 	<div align="center">
-	<a href="${pageContext.request.contextPath}/payForOrder">支付</a> 
-	<a href="${pageContext.request.contextPath}/payForOrder">稍後支付</a> 
+	<a href="javascript:void(0)" onclick="pay('${orderInfo.id}')">支付</a>
+	<a href="${pageContext.request.contextPath}/payLatter">稍後支付</a> 
 	</div>
-	</c:if>
+
 			
 			</body>
 </html>

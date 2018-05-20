@@ -1,9 +1,11 @@
 package com.wangyanci.pojo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TablePageListResult {
+public class TablePageListResult implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private long total;
 	private List rows;
 
