@@ -62,8 +62,11 @@ public class RegistUserServlet extends HttpServlet {
 		}
 
 		try {
-
+			// 封装用户注册信息
 			BeanUtils.populate(user, paramap);
+			// 将用户身份默认设为普通用户
+			user.setRole("user");
+			user.setState(0);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {

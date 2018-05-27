@@ -1,9 +1,13 @@
 package com.wangyanci.daoimp;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.wangyanci.dao.UserDao;
 import com.wangyanci.pojo.User;
@@ -19,7 +23,7 @@ public class UserDaoImp implements UserDao {
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 
 		runner.update(sql, user.getUsername(), Md5Utils.md5(user.getPassword()), user.getNickname(), user.getEmail(),
-				"user", 0, user.getActivecode());
+				user.getRole(), 0, user.getActivecode());
 
 	}
 
@@ -53,6 +57,39 @@ public class UserDaoImp implements UserDao {
 		String sql = "select * from user where id=?";
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 		return runner.query(sql, new BeanHandler<User>(User.class), id);
+	}
+
+	public List<User> getUserList(int page, int rows) throws SQLException {
+		String sql = "select * from  user limit ?,?";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		return runner.query(sql, new BeanListHandler<User>(User.class), (page - 1) * rows, rows);
+	}
+
+	public int getCount() throws SQLException {
+		String sql = "select count(*) from user";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		long count = (Long) runner.query(sql, new ScalarHandler());
+		return (int) count;
+	}
+
+	public void changeStateUser(int id, String role) throws SQLException {
+		String sql = "update  user set role=? where id=?";
+		PreparedStatement preparedStatement = DataSourceUtils.getDataSource().getConnection().prepareStatement(sql);
+		preparedStatement.setInt(2, id);
+		preparedStatement.setString(1, role);
+		System.out.println("**********id**********" + id);
+		System.out.println("**********role**********" + role);
+		int a = preparedStatement.executeUpdate();
+		System.out.println("**********a**********" + a);
+	}
+
+	public void banUser(int id, int state) throws SQLException {
+		String sql = "update  user set state=? where id=?";
+		PreparedStatement preparedStatement = DataSourceUtils.getDataSource().getConnection().prepareStatement(sql);
+		preparedStatement.setInt(2, id);
+		preparedStatement.setInt(1, state);
+		int a = preparedStatement.executeUpdate();
+
 	}
 
 }

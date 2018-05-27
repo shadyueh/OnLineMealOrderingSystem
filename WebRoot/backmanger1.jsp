@@ -39,8 +39,8 @@
          	<li>
          		<span>用户管理</span>
          		<ul>
-	         		<li data-options="attributes:{'url':'import-index'}">查看用户</li>
-	         		<li data-options="attributes:{'url':'import-index'}">管理用户</li>
+	         		<li data-options="attributes:{'url':'user_list.jsp'}">查看用户</li>
+	         		<li data-options="attributes:{'url':'user_list.jsp'}">管理用户</li>
 	         	</ul>
          	</li>
          </ul>

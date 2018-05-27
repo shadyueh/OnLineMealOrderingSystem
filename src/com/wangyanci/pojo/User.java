@@ -6,11 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class User implements Serializable {
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", nickname=" + nickname
 				+ ", email=" + email + ", role=" + role + ", activestate=" + activestate + ", activecode=" + activecode
-				+ ", registtime=" + registtime + "]";
+				+ ", tel=" + tel + ", state=" + state + ", registtime=" + registtime + "]";
 	}
 
 	private int id; // 用户编号
@@ -21,6 +22,25 @@ public class User implements Serializable {
 	private String role; // 角色 默认是user
 	private int activestate; // 是否激活 0 未激活
 	private String activecode; // 激活码 UUID获取
+	private String tel;
+	private int state;// 账户状态
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+
 	private Timestamp registtime; // 更新时间
 
 	public int getId() {

@@ -1,6 +1,7 @@
 package com.wangyanci.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.wangyanci.pojo.Dishhot;
 
@@ -11,5 +12,7 @@ public interface DishHotDao {
 	Dishhot getDishHotByDishId(String dishid) throws SQLException;
 
 	void updateDishHotNum(Dishhot dishhot) throws SQLException;
+
+	List<Dishhot> findHot() throws SQLException;
 
 }

@@ -351,4 +351,44 @@
     <servlet-name>FindOrderById</servlet-name>
     <url-pattern>/findOrderById</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListUser</display-name>
+    <servlet-name>ListUser</servlet-name>
+    <servlet-class>com.wangyanci.servlet.ListUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListUser</servlet-name>
+    <url-pattern>/listUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpUserGrant</display-name>
+    <servlet-name>UpUserGrant</servlet-name>
+    <servlet-class>com.wangyanci.servlet.UpUserGrant</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpUserGrant</servlet-name>
+    <url-pattern>/upUserGrant</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>BanUser</display-name>
+    <servlet-name>BanUser</servlet-name>
+    <servlet-class>com.wangyanci.servlet.BanUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BanUser</servlet-name>
+    <url-pattern>/banUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FindHotDish</display-name>
+    <servlet-name>FindHotDish</servlet-name>
+    <servlet-class>com.wangyanci.servlet.FindHotDish</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FindHotDish</servlet-name>
+    <url-pattern>/findHotDish</url-pattern>
+  </servlet-mapping>
 </web-app>

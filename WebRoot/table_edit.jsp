@@ -55,8 +55,9 @@
 	<div style="padding:5px">
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a>
 	</div>
-</div>
 
+</div>
+<script>
 	var itemEditEditor ;
 	$(function(){
 		//实例化编辑器
@@ -87,4 +88,5 @@
 			}
 		});
 	}
+	
 </script>

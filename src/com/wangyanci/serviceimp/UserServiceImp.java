@@ -1,6 +1,7 @@
 package com.wangyanci.serviceimp;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -10,6 +11,7 @@ import com.wangyanci.daoimp.UserDaoImp;
 import com.wangyanci.exception.ActiveCodeException;
 import com.wangyanci.exception.LoginException;
 import com.wangyanci.exception.RegistException;
+import com.wangyanci.pojo.TablePageListResult;
 import com.wangyanci.pojo.User;
 import com.wangyanci.service.UserService;
 import com.wangyanci.utils.MailUtils;
@@ -76,6 +78,28 @@ public class UserServiceImp implements UserService {
 			e.printStackTrace();
 			throw new LoginException("用户名或密码错误");
 		}
+
+	}
+
+	public TablePageListResult gerAllUser(int page, int rows) throws SQLException {
+		UserDao dao = new UserDaoImp();
+		List<User> list = dao.getUserList(page, rows);
+		int count = dao.getCount();
+		TablePageListResult result = new TablePageListResult();
+		result.setRows(list);
+		result.setTotal(count);
+		return result;
+	}
+
+	public void changeStateUser(int id, String role) throws SQLException {
+		UserDao dao = new UserDaoImp();
+		dao.changeStateUser(id, role);
+
+	}
+
+	public void banUser(int id, int state) throws SQLException {
+		UserDao dao = new UserDaoImp();
+		dao.banUser(id, state);
 
 	}
 

@@ -61,6 +61,26 @@ var TT = TAOTAO = {
         	return '占用';
         }
     },
+	// 格式化用户的状态formatAccountStatus
+	formatUserStatus : function formatStatus(val,row){
+        if (val == "user"){
+            return '普通用户';
+        } else if(val == "admin"){
+        	return '<span style="color:red;">管理员</span>';
+        } else {
+        	return '<span style="color:red;">超级管理员</span>';
+        }
+    },
+ // 格式化用户账号的状态formatAccountStatus
+    formatAccountStatus : function formatStatus(val,row){
+         if (val == 0){
+             return '正常';
+         } else if(val == 1){
+         	return '<span style="color:red;">被封</span>';
+         } else {
+         	return '<span style="color:red;">异常</span>';
+         }
+     },
     
     init : function(data){
     	// 初始化图片上传组件

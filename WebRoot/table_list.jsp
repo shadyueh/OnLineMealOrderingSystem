@@ -30,7 +30,7 @@
     	}
     	ids = ids.join(",");
     	return ids;
-    }
+    };
     
     var toolbar = [{
         text:'新增',
@@ -56,7 +56,7 @@
         		onLoad :function(){
         			//回显数据
         			var data = $("#itemList").datagrid("getSelections")[0];
-        			alert(data)
+     
         			//data.priceView = TAOTAO.formatPrice(data.price);
         			$("#itemeEditForm").form("load",data);
         			itemEditEditor.html(data.description);

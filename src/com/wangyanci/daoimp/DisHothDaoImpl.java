@@ -1,13 +1,17 @@
 package com.wangyanci.daoimp;
 
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.wangyanci.dao.DishHotDao;
 import com.wangyanci.pojo.Dishhot;
 import com.wangyanci.utils.DataSourceUtils;
+import com.wangyanci.utils.DateUtils;
 
 public class DisHothDaoImpl implements DishHotDao {
 
@@ -30,6 +34,14 @@ public class DisHothDaoImpl implements DishHotDao {
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 		runner.update(sql, dishhot.getNum());
 
+	}
+
+	public List<Dishhot> findHot() throws SQLException {
+		Date date = DateUtils.GetDate(-30, "days");
+
+		String sql = "select * from (select * from dishhot where lastbuytime > ? order by num desc) temp limit 0,10";
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		return runner.query(sql, new BeanListHandler<Dishhot>(Dishhot.class), date);
 	}
 
 }
