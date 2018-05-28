@@ -1,6 +1,6 @@
 <%@page import="net.sf.json.JSON"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table class="easyui-datagrid" id="itemList" title="订单列表" 
+<table class="easyui-datagrid" id="itemList" title="用户列表" 
        data-options="singleSelect:false,collapsible:true,pagination:true,url:'${pageContext.request.contextPath}/listUser',method:'get',pageSize:30,toolbar:toolbar">
     <thead>
         <tr>
@@ -62,12 +62,12 @@
         		$.messager.alert('提示','未选中用户!');
         		return ;
         	}
-        	$.messager.confirm('确认','确定将此用户设为管理员吗？',function(r){
+        	$.messager.confirm('确认','确定撤回此用户权限吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids,"role":'user'};
                 	$.post("${pageContext.request.contextPath}/upUserGrant",params, function(data){
             			if(data == "ok"){
-            				$.messager.alert('提示','设为管理员成功!',undefined,function(){
+            				$.messager.alert('提示','撤销权限成功!',undefined,function(){
             					$("#itemList").datagrid("reload");
             				});
             			}
@@ -99,7 +99,7 @@
         }
     },'-',{
         text:'解封',
-        iconCls:'icon-cancel',
+        iconCls:'icon-remove',
         handler:function(){
         	     	        	  	var ids = getSelectionsIds();
         	if(ids.length == 0){

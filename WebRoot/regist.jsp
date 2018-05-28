@@ -94,6 +94,11 @@
 					id="email_message"></span></td>
 			</tr>
 			<tr>
+				<td>手机号码</td>
+				<td><input type="text" name="tel" id="tel"><span
+					id="tel_message"></span></td>
+			</tr>
+			<tr>
 				<td>验证码</td>
 				<td><input type="text" name="checkcode" id="checkcode"><img
 					src="${pageContext.request.contextPath}/checkImg"

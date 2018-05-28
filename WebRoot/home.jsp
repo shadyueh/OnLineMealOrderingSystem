@@ -1,15 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
+<html>
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>快捷订餐</title>
 
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
-
+<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.4.1/themes/icon.css" />
+<link rel="stylesheet" type="text/css" href="css/taotao.css" />
+<link href="js/kindeditor-4.1.10/themes/default/default.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/jquery-easyui-1.4.1/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/kindeditor-4.1.10/lang/zh_CN.js"></script>
 
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript">
@@ -41,11 +52,121 @@
 		window.de
 		username.value=window.decodeURIComponent("${cookie.remember.value}","utf-8");
 	};
+	function sayGellow(){
+alert("nihao1!")
+};
+
+$.extend($.fn.validatebox.defaults.rules, {    
+    equals: {    
+        validator: function(value,param){    
+            return value == $(param[0]).val();    
+        },    
+        message: 'Field do not match.'   
+    }    
+}); 
+
+    $.extend($.fn.validatebox.defaults.rules, {  
+    phoneRex: {  
+        validator: function(value){  
+        var rex=/^1[3-8]+\d{9}$/;  
+        //var rex=/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;  
+        //区号：前面一个0，后面跟2-3位数字 ： 0\d{2,3}  
+        //电话号码：7-8位数字： \d{7,8  
+        //分机号：一般都是3位数字： \d{3,}  
+         //这样连接起来就是验证电话的正则表达式了：/^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/          
+        var rex2=/^((0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;  
+        if(rex.test(value)||rex2.test(value))  
+        {  
+          // alert('t'+value);  
+          return true;  
+        }else  
+        {  
+         //alert('false '+value);  
+           return false;  
+        }  
+            
+        },  
+        message: '请输入正确电话或手机格式'  
+    }  
+}); 
+//提交表单
+	submitForm=function(){
+		//有效性验证
+		if(!$('#itemAddForm').form('validate')){
+			$.messager.alert('提示','表单还未填写完成!');
+			return ;
+		}
+
+		$.post("${pageContext.request.contextPath}/regist",$("#itemAddForm").serialize(), function(data){
+		
+			if(data == '{"status":200}'){
+				$.messager.alert('提示','注册成功!','info', function(){
+				location.href=document.referrer;
+				}
+				);
+				
+			}
+		});
+	};
+		change=function() {
+		document.getElementById("cimg").src = "${pageContext.request.contextPath}/checkImg?time="
+				+ new Date().getTime();
+	};
 	
+	
+	clearForm=function(){
+
+		$('#itemAddForm').form('reset');
+		change();
+	};
+	
+
 	//根据id查询商品
 	function findDishById(id){
 		location.href="${pageContext.request.contextPath}/findDishById?id="+id;
 	};
+	function login(){
+	var username=document.getElementById("username").value
+	var password=document.getElementById("password").value
+	var remember=document.getElementById("remember").value
+	var autologin=document.getElementById("autologin").value
+	 	var params = {"username":username,"password":password,"autologin":autologin,"remember":remember};
+        	    	
+        	    		$.post("${pageContext.request.contextPath}/login",params, function(data){
+            			if(data == "ok"){
+            				$.messager.alert('提示','登陆成功!',undefined,function(){
+            			
+            					location.href="${pageContext.request.contextPath}/";
+            				});
+            			}else if(data == "unac"){
+            			$.messager.alert('提示','当前用户未激活，请激活后重试!',undefined,function(){
+            				
+            					location.href="${pageContext.request.contextPath}/";
+            				});
+            			}else if(data == "ban"){
+            			$.messager.alert('提示','当前账户已被封禁，请联系管理员!',undefined,function(){
+            				alert("ok")
+            					location.href="${pageContext.request.contextPath}/";
+            				});
+            			}else{
+            			$.messager.alert('提示','系统繁忙，请稍后重试!',undefined,function(){
+            				alert("ok")
+            					location.href="${pageContext.request.contextPath}/";
+            				});
+            			}
+            		});
+	}
+	
+	function regist(){
+	$("#itemEditWindow").window("resize",{top:$(document).scrollTop() + ($(window).height()-250) * 0.5}).window("open");
+	
+	
+	};
+	
+	
+	
+	
+	
 </script>
 </head>
 <body>
@@ -227,10 +348,13 @@
 											<ul class="art-vmenu">
 												<li><a href="page.html?i1"><span class="l"></span><span
 														class="r"></span><span class="t">主页</span> </a></li>
+														<c:if test="${ not empty user}">
+														<c:if test="${user.role == 'admin' or user.role == 'root' }">
 												<li><a href="${pageContext.request.contextPath}/addDish.jsp"><span class="l"></span><span
 														class="r"></span><span class="t">添加菜品</span> </a></li>
 												<li><a href="${pageContext.request.contextPath}/backmanger.jsp"><span class="l"></span><span
 														class="r"></span><span class="t">管理菜品</span> </a></li>
+														</c:if></c:if>
 												<li><a href="${pageContext.request.contextPath}/showCart"><span class="l"></span><span
 														class="r"></span><span class="t">查看购物车</span> </a></li>
 												<li><a href="${pageContext.request.contextPath}/showNoPayOrder"><span class="l"></span><span
@@ -243,19 +367,22 @@
 														class="r"></span><span class="t">联系方式</span> </a></li>
 											</ul>
 											<!-- /block-content -->
-
+												<c:if test="${ empty user }">
 											<div class="cleared"></div>
 										</div>
 									</div>
 									<div class="cleared"></div>
 								</div>
 							</div>
+							
 							<div class="art-block">
 								<div class="art-block-body">
 									<div class="art-blockheader">
 										<div class="l"></div>
 										<div class="r"></div>
+										
 										<div class="t">用户登陆</div>
+										
 									</div>
 									<div class="art-blockcontent">
 										<div class="art-blockcontent-tl"></div>
@@ -269,6 +396,9 @@
 										<div class="art-blockcontent-cc"></div>
 										<div class="art-blockcontent-body">
 											<!-- block-content -->
+											
+											
+										
 											<div>
 												<form method="post" id="loginForm"
 													action="${pageContext.request.contextPath}/login">
@@ -291,18 +421,25 @@
 														</tr>
 														<tr>
 															<td colspan="2"><input type="checkbox"
-																name="remember" value="on" />记住用户 <input
-																type="checkbox" name="autologin" value="on" />自动登陆</td>
+																name="remember" value="on" id="remember" />记住用户 <input
+																type="checkbox" name="autologin" value="on" id="autologin"/>自动登陆</td>
 														</tr>
 														<tr>
 															<td colspan="2"><span class="art-button-wrapper">
 																	<span class="l"> </span> <span class="r"> </span> <input
-																	class="art-button" type="submit" name="loginbtn"
-																	value="登陆" /> </span> &nbsp;&nbsp;&nbsp;<a
-																href="${pageContext.request.contextPath}/regist.jsp">注册</a>
+																	class="art-button" type="button" name="loginbtn"
+																	value="登陆" onclick="login()"/> </span> &nbsp;&nbsp;&nbsp;
+																	<span class="l"> </span> <span class="r"> </span> <input
+																	class="art-button" type="button" name="registbtn"
+																	value="注册" onclick="regist()"/>
+																	
+																<div id="itemEditWindow" class="easyui-window" align="center" title="注册" data-options="modal:true,closed:true,iconCls:'icon-save',href:'${pageContext.request.contextPath}/regist_easyUI.jsp'" style="width:600px;padding:10px 60px 20px 60px"></div>
+																</td>
+																</tr>
 													</table>
 												</form>
-											</div>
+											</div> 
+											</c:if>
 											<!-- /block-content -->
 
 											<div class="cleared"></div>

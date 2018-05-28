@@ -5,7 +5,7 @@
 <head>
 
 <title>My JSP 'regist.jsp' starting page</title>
-<meta http-equiv="refresh" content="3;url=http://localhost:8081${pageContext.request.contextPath}/home.jsp">
+<meta http-equiv="refresh" content="3;url=http://localhost:8080${pageContext.request.contextPath}/">
 <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
 
 <script type="text/javascript">

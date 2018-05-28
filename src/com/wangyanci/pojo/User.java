@@ -7,13 +7,6 @@ import java.util.Map;
 
 public class User implements Serializable {
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", nickname=" + nickname
-				+ ", email=" + email + ", role=" + role + ", activestate=" + activestate + ", activecode=" + activecode
-				+ ", tel=" + tel + ", state=" + state + ", registtime=" + registtime + "]";
-	}
-
 	private int id; // 用户编号
 	private String username; // 用户名
 	private String password; // 密码
@@ -113,6 +106,13 @@ public class User implements Serializable {
 
 	public void setRegisttime(Timestamp registtime) {
 		this.registtime = registtime;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", nickname=" + nickname
+				+ ", email=" + email + ", role=" + role + ", activestate=" + activestate + ", activecode=" + activecode
+				+ ", tel=" + tel + ", state=" + state + ", registtime=" + registtime + "]";
 	}
 
 	// 校验方法

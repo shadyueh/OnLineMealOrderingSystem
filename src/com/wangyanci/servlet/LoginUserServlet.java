@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wangyanci.exception.ActiveCodeException;
+import com.wangyanci.exception.BanException;
 import com.wangyanci.exception.LoginException;
 import com.wangyanci.pojo.User;
 import com.wangyanci.service.UserService;
@@ -77,18 +78,19 @@ public class LoginUserServlet extends HttpServlet {
 
 			request.getSession().setAttribute("user", user);// 登录成功，将user存储到session中.
 
-			request.getRequestDispatcher("/home.jsp").forward(request, response); // 重定向可以跳转到任意路径,请求转发只能在本站内跳转.
-			return;
+			response.getWriter().write("ok");
 
 		} catch (LoginException e) {
 			e.printStackTrace();
-			request.setAttribute("login.message", e.getMessage());
-			request.getRequestDispatcher("/home.jsp").forward(request, response);
+			response.getWriter().write("sys");
 			return;
 		} catch (ActiveCodeException e) {
 			e.printStackTrace();
-			request.setAttribute("login.message", e.getMessage());
-			request.getRequestDispatcher("/home.jsp").forward(request, response);
+			response.getWriter().write("unac");
+			return;
+		} catch (BanException e) {
+			e.printStackTrace();
+			response.getWriter().write("ban");
 			return;
 		}
 	}

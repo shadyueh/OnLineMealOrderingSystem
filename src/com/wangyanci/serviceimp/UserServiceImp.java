@@ -9,6 +9,7 @@ import javax.mail.internet.AddressException;
 import com.wangyanci.dao.UserDao;
 import com.wangyanci.daoimp.UserDaoImp;
 import com.wangyanci.exception.ActiveCodeException;
+import com.wangyanci.exception.BanException;
 import com.wangyanci.exception.LoginException;
 import com.wangyanci.exception.RegistException;
 import com.wangyanci.pojo.TablePageListResult;
@@ -60,17 +61,21 @@ public class UserServiceImp implements UserService {
 		}
 	}
 
-	public User login(String username, String password) throws LoginException {
+	public User login(String username, String password) throws LoginException, BanException {
 		UserDao dao = new UserDaoImp();
 		try {
 			User user = dao.login(username, password);
 			if (user != null) {
 				// 判断用户是否激活
-				if (user.getActivestate() == 1) {
-					return user;
-				} else {
+				if (user.getActivestate() == 0) {
 					throw new ActiveCodeException("用户未激活");
 				}
+
+				if (user.getState() == 1) {
+					throw new BanException("用户已被封");
+				}
+				return user;
+
 			} else {
 				throw new LoginException("用户名或密码错误");
 			}

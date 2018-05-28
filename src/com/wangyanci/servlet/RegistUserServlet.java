@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 
+import com.google.gson.Gson;
 import com.wangyanci.pojo.User;
 import com.wangyanci.service.UserService;
 import com.wangyanci.serviceimp.UserServiceImp;
@@ -35,10 +36,12 @@ public class RegistUserServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		System.out.println("----------------");
-
+		System.out.println("#################request==null#############" + (request == null));
 		// 进行验证码判断
-		String checkCode = new String(request.getParameter("checkcode").getBytes("iso-8859-1"), "utf-8");
-
+		// String checkCode = new
+		// String(request.getParameter("checkcode").getBytes("iso-8859-1"),
+		// "utf-8");
+		String checkCode = request.getParameter("checkcode");
 		String _checkCode = (String) request.getSession().getAttribute("checkcode_session");
 		logger.info("用户输入的验证码————————" + checkCode);
 		logger.info("系统生成的验证码————————" + _checkCode);
@@ -92,9 +95,11 @@ public class RegistUserServlet extends HttpServlet {
 			service.regist(user);
 
 			// 3.注册成功
-			// response.setHeader("refresh", "3;url=http://www.estore.com");
-			response.sendRedirect(request.getContextPath() + "/regist_success.jsp");
-			return;
+			Gson gson = new Gson();
+			Map<String, Object> result = new HashMap<String, Object>();
+			result.put("status", 200);
+
+			response.getWriter().write(gson.toJson(result));
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("regist.message", e.getMessage());

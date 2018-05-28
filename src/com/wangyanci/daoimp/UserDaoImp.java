@@ -18,12 +18,12 @@ public class UserDaoImp implements UserDao {
 
 	public void regist(User user) throws SQLException {
 		// 注册操作
-		String sql = "insert into user values(null,?,?,?,?,?,?,?,null)";
+		String sql = "insert into user(id, username, password, nickname, email, role, activestate, activecode, registtime, tel, state) values(null,?,?,?,?,?,?,?,null,?,0)";
 
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
 
 		runner.update(sql, user.getUsername(), Md5Utils.md5(user.getPassword()), user.getNickname(), user.getEmail(),
-				user.getRole(), 0, user.getActivecode());
+				user.getRole(), 0, user.getActivecode(), user.getTel());
 
 	}
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -36,13 +37,14 @@
 	  
 	         	</ul>
          	</li>
+         	<c:if test="${ user.role == 'root' }">
          	<li>
          		<span>用户管理</span>
          		<ul>
 	         		<li data-options="attributes:{'url':'user_list.jsp'}">查看用户</li>
 	         		<li data-options="attributes:{'url':'user_list.jsp'}">管理用户</li>
 	         	</ul>
-         	</li>
+         	</li></c:if>
          </ul>
     </div>
     <div data-options="region:'center',title:''">
